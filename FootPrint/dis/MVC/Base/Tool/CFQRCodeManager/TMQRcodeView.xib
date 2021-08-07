@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14113"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="qrCodeView" id="iN0-l3-epB" customClass="TMQRcodeView">
+            <rect key="frame" x="0.0" y="0.0" width="290" height="326"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PHB-JA-zuL">
+                    <rect key="frame" x="0.0" y="0.0" width="290" height="326"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="PHB-JA-zuL" secondAttribute="bottom" id="Ecs-rT-7qr"/>
+                <constraint firstItem="PHB-JA-zuL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VAM-LG-WQ9"/>
+                <constraint firstAttribute="trailing" secondItem="PHB-JA-zuL" secondAttribute="trailing" id="lmC-JK-rST"/>
+                <constraint firstItem="PHB-JA-zuL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qK6-bl-XF5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bgView" destination="PHB-JA-zuL" id="Wir-n0-peZ"/>
+            </connections>
+            <point key="canvasLocation" x="390" y="220"/>
+        </view>
+    </objects>
+</document>

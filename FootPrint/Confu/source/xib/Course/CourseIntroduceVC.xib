@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseIntroduceVC">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="46U-Fa-sUD"/>
+                <outlet property="webView" destination="uX0-5W-xg4" id="xNg-jW-UeC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX0-5W-xg4" customClass="JsWKWebView">
+                    <rect key="frame" x="12" y="17" width="351" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </webView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUs-wg-5Ke">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="xxy-D8-hfS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gUs-wg-5Ke" secondAttribute="trailing" id="0eI-Lo-9pd"/>
+                <constraint firstItem="uX0-5W-xg4" firstAttribute="top" secondItem="gUs-wg-5Ke" secondAttribute="bottom" constant="16" id="2k4-wD-gZM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uX0-5W-xg4" secondAttribute="bottom" constant="50" id="5XG-6F-J7P"/>
+                <constraint firstItem="uX0-5W-xg4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="Lcf-jw-ZiF"/>
+                <constraint firstItem="gUs-wg-5Ke" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="iHx-gL-dQG"/>
+                <constraint firstItem="gUs-wg-5Ke" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="plY-sK-tTO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uX0-5W-xg4" secondAttribute="trailing" constant="12" id="tJL-99-qED"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="153.37331334332833"/>
+        </view>
+    </objects>
+</document>

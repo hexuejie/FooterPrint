@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CouponView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ks-pU-KYH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cow-lW-lhE">
+                    <rect key="frame" x="48" y="103.5" width="279" height="300"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_coupon" translatesAutoresizingMaskIntoConstraints="NO" id="dGa-Lt-kHU">
+                            <rect key="frame" x="90.5" y="40" width="98" height="98"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="98" id="ohc-Sb-Znr"/>
+                                <constraint firstAttribute="height" constant="98" id="sVS-6K-Oyb"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入优惠码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mnV-Vk-ab3">
+                            <rect key="frame" x="20" y="174" width="239" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="CPM-wB-Hzj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lta-6G-dg2">
+                            <rect key="frame" x="20" y="212" width="239" height="1"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="eCK-vj-noW"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4s-au-FMY">
+                            <rect key="frame" x="20" y="240" width="239" height="36"/>
+                            <color key="backgroundColor" red="0.51372549020000002" green="0.75686274509999996" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="mBm-fx-saL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="确认">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnSubmitClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Omx-NN-Q6L"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="mnV-Vk-ab3" firstAttribute="leading" secondItem="cow-lW-lhE" secondAttribute="leading" constant="20" id="44v-Fw-sPh"/>
+                        <constraint firstItem="w4s-au-FMY" firstAttribute="centerX" secondItem="cow-lW-lhE" secondAttribute="centerX" id="64l-8E-OAo"/>
+                        <constraint firstAttribute="bottom" secondItem="w4s-au-FMY" secondAttribute="bottom" constant="24" id="Dxy-L1-1xv"/>
+                        <constraint firstItem="Lta-6G-dg2" firstAttribute="leading" secondItem="mnV-Vk-ab3" secondAttribute="leading" id="Z7r-6j-asS"/>
+                        <constraint firstItem="Lta-6G-dg2" firstAttribute="top" secondItem="mnV-Vk-ab3" secondAttribute="bottom" constant="8" id="chT-ZO-EzU"/>
+                        <constraint firstItem="w4s-au-FMY" firstAttribute="leading" secondItem="cow-lW-lhE" secondAttribute="leading" constant="20" id="jts-MT-mGH"/>
+                        <constraint firstItem="Lta-6G-dg2" firstAttribute="trailing" secondItem="mnV-Vk-ab3" secondAttribute="trailing" id="k4o-eE-Qsf"/>
+                        <constraint firstItem="dGa-Lt-kHU" firstAttribute="top" secondItem="cow-lW-lhE" secondAttribute="top" constant="40" id="mai-iF-INQ"/>
+                        <constraint firstItem="mnV-Vk-ab3" firstAttribute="centerX" secondItem="cow-lW-lhE" secondAttribute="centerX" id="peb-Z3-awu"/>
+                        <constraint firstAttribute="height" constant="300" id="tYT-HC-0ES"/>
+                        <constraint firstItem="mnV-Vk-ab3" firstAttribute="top" secondItem="dGa-Lt-kHU" secondAttribute="bottom" constant="36" id="wMe-qw-rde"/>
+                        <constraint firstItem="dGa-Lt-kHU" firstAttribute="centerX" secondItem="cow-lW-lhE" secondAttribute="centerX" id="yfk-58-394"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdv-ZD-mZa">
+                    <rect key="frame" x="162.5" y="427.5" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="EQr-Td-kb4"/>
+                        <constraint firstAttribute="height" constant="50" id="SyG-Or-OPL"/>
+                    </constraints>
+                    <state key="normal" image="coupon_clod"/>
+                    <connections>
+                        <action selector="btnCloseClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Npf-TU-EN2"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="6Ks-pU-KYH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5bx-0p-Dvp"/>
+                <constraint firstItem="cow-lW-lhE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9Kf-E6-pRo"/>
+                <constraint firstItem="kdv-ZD-mZa" firstAttribute="top" secondItem="cow-lW-lhE" secondAttribute="bottom" constant="24" id="EEj-Yp-5Zv"/>
+                <constraint firstItem="kdv-ZD-mZa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Nrb-5F-MRg"/>
+                <constraint firstItem="cow-lW-lhE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-80" id="QqF-UP-Chb"/>
+                <constraint firstItem="cow-lW-lhE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="Wxo-Jq-xIa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6Ks-pU-KYH" secondAttribute="trailing" id="hMe-3p-nKK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="6Ks-pU-KYH" secondAttribute="bottom" id="yet-tL-l6I"/>
+                <constraint firstItem="6Ks-pU-KYH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yvv-wA-AbT"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnSubmit" destination="w4s-au-FMY" id="gGO-8E-3g9"/>
+                <outlet property="txtCode" destination="mnV-Vk-ab3" id="la7-3D-l5p"/>
+            </connections>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="coupon_clod" width="128" height="128"/>
+        <image name="ic_coupon" width="128" height="128"/>
+    </resources>
+</document>

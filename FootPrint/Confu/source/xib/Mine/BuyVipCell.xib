@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BuyVipCell">
+            <rect key="frame" x="0.0" y="0.0" width="185" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="185" height="70"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWQ-gj-hQF">
+                        <rect key="frame" x="0.0" y="0.0" width="185" height="70"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDT-cn-VUL">
+                                <rect key="frame" x="78" y="12" width="29" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥88.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NL0-sq-Xvl">
+                                <rect key="frame" x="65" y="38" width="55" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" red="0.27843137254901962" green="0.5725490196078431" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NL0-sq-Xvl" firstAttribute="centerX" secondItem="eWQ-gj-hQF" secondAttribute="centerX" id="0wI-Io-ggh"/>
+                            <constraint firstItem="SDT-cn-VUL" firstAttribute="centerX" secondItem="eWQ-gj-hQF" secondAttribute="centerX" id="LsO-dQ-Tkg"/>
+                            <constraint firstAttribute="bottom" secondItem="NL0-sq-Xvl" secondAttribute="bottom" constant="12" id="eOD-j9-A7q"/>
+                            <constraint firstItem="SDT-cn-VUL" firstAttribute="top" secondItem="eWQ-gj-hQF" secondAttribute="top" constant="12" id="kQE-XF-Vjq"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.75294117650000003" green="0.76862745099999996" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eWQ-gj-hQF" secondAttribute="trailing" id="2s9-gR-8dR"/>
+                <constraint firstItem="eWQ-gj-hQF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NnK-K1-ByQ"/>
+                <constraint firstItem="eWQ-gj-hQF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VhD-Xp-UJZ"/>
+                <constraint firstAttribute="bottom" secondItem="eWQ-gj-hQF" secondAttribute="bottom" id="knU-RY-OB7"/>
+            </constraints>
+            <size key="customSize" width="185" height="111"/>
+            <connections>
+                <outlet property="lblName" destination="SDT-cn-VUL" id="t4Z-FP-qZa"/>
+                <outlet property="lblPrice" destination="NL0-sq-Xvl" id="sYK-bV-BjT"/>
+                <outlet property="viewBg" destination="eWQ-gj-hQF" id="uu2-zM-Cng"/>
+            </connections>
+            <point key="canvasLocation" x="-55.200000000000003" y="75.562218890554732"/>
+        </collectionViewCell>
+    </objects>
+</document>

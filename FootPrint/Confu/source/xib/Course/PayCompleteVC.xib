@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PayCompleteVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pay_complete" translatesAutoresizingMaskIntoConstraints="NO" id="hft-WU-TNA">
+                    <rect key="frame" x="97.5" y="60" width="180" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="WbJ-Tx-FYt"/>
+                        <constraint firstAttribute="width" constant="180" id="dcH-fk-jv4"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjO-1y-bpd">
+                    <rect key="frame" x="40" y="339.5" width="295" height="40"/>
+                    <color key="backgroundColor" red="0.054901960780000002" green="0.51372549020000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="JYz-8c-ZK4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="已完成支付"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btnSuccessClick:" destination="-1" eventType="touchUpInside" id="ZBz-aL-IAr"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usH-jw-A32">
+                    <rect key="frame" x="155" y="256" width="65.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VB-sC-0MZ">
+                    <rect key="frame" x="40" y="399.5" width="295" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Vg8-rs-BwO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="遇到问题，重新支付">
+                        <color key="titleColor" red="0.054901960780000002" green="0.51372549020000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.054901960780000002" green="0.51372549020000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btnAgainClick:" destination="-1" eventType="touchUpInside" id="dVh-VV-lBK"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4VB-sC-0MZ" firstAttribute="top" secondItem="wjO-1y-bpd" secondAttribute="bottom" constant="20" id="1oD-4l-3Fy"/>
+                <constraint firstItem="wjO-1y-bpd" firstAttribute="top" secondItem="usH-jw-A32" secondAttribute="bottom" constant="64" id="4Eb-ku-jm6"/>
+                <constraint firstItem="4VB-sC-0MZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Fds-hn-khM"/>
+                <constraint firstItem="wjO-1y-bpd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Fvs-WP-iU8"/>
+                <constraint firstItem="usH-jw-A32" firstAttribute="top" secondItem="hft-WU-TNA" secondAttribute="bottom" constant="16" id="HJb-RX-D65"/>
+                <constraint firstItem="wjO-1y-bpd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="40" id="bem-F0-oSd"/>
+                <constraint firstItem="hft-WU-TNA" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="60" id="mm2-gc-JN6"/>
+                <constraint firstItem="4VB-sC-0MZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="40" id="p2a-Ou-mMf"/>
+                <constraint firstItem="hft-WU-TNA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zIV-Aa-uAq"/>
+                <constraint firstItem="usH-jw-A32" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zqv-L7-hm1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pay_complete" width="128" height="128"/>
+    </resources>
+</document>

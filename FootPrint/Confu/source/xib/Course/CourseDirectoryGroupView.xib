@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CourseDirectoryGroupView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsQ-XJ-bQL">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wo4-Q8-HFq">
+                    <rect key="frame" x="18" y="15" width="23" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <color key="textColor" red="0.75294117647058822" green="0.7686274509803922" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="highlightedColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如何使用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJI-kv-Lfc">
+                    <rect key="frame" x="57" y="15" width="65.5" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.18823529411764706" green="0.19215686274509805" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_open" translatesAutoresizingMaskIntoConstraints="NO" id="bjv-4Y-xoN">
+                    <rect key="frame" x="345" y="18" width="14" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="I4X-Kl-7fz"/>
+                        <constraint firstAttribute="width" constant="14" id="jmz-c6-DNV"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bjv-4Y-xoN" secondAttribute="trailing" constant="16" id="1a3-nJ-vnf"/>
+                <constraint firstItem="Wo4-Q8-HFq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="7Kn-KW-ENV"/>
+                <constraint firstItem="Wo4-Q8-HFq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LE0-aY-nM9"/>
+                <constraint firstItem="OsQ-XJ-bQL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ni7-Pp-0EU"/>
+                <constraint firstItem="zJI-kv-Lfc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="a8K-Pr-lf9"/>
+                <constraint firstItem="OsQ-XJ-bQL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gLv-rD-ayS"/>
+                <constraint firstItem="OsQ-XJ-bQL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ldy-Qm-JL4"/>
+                <constraint firstItem="zJI-kv-Lfc" firstAttribute="leading" secondItem="Wo4-Q8-HFq" secondAttribute="trailing" constant="16" id="nMw-yz-NT6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="OsQ-XJ-bQL" secondAttribute="bottom" id="p84-P6-aHA"/>
+                <constraint firstItem="bjv-4Y-xoN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="x8D-iR-39A"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btn" destination="OsQ-XJ-bQL" id="Eee-q8-aPj"/>
+                <outlet property="imgStatus" destination="bjv-4Y-xoN" id="Oo8-ge-gms"/>
+                <outlet property="lblNumber" destination="Wo4-Q8-HFq" id="QGi-qN-G5l"/>
+                <outlet property="lblTitile" destination="zJI-kv-Lfc" id="AuF-zq-Ybx"/>
+            </connections>
+            <point key="canvasLocation" x="53.600000000000001" y="48.575712143928037"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_open" width="128" height="128"/>
+    </resources>
+</document>

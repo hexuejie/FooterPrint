@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StarView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAb-8z-lrW">
+                    <rect key="frame" x="0.0" y="0.0" width="85" height="20"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_allcomments_star_n.png" highlightedImage="ic_allcomments_star_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="vb4-db-FDT">
+                            <rect key="frame" x="72" y="4" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="13" id="6Mv-AR-i1q"/>
+                                <constraint firstAttribute="width" constant="13" id="Klz-fI-tDH"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_allcomments_star_n.png" highlightedImage="ic_allcomments_star_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ifr-XD-0LC">
+                            <rect key="frame" x="54" y="4.5" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="Q9p-6e-fpO"/>
+                                <constraint firstAttribute="height" constant="13" id="ag5-aq-9jO"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_allcomments_star_n.png" highlightedImage="ic_allcomments_star_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-H8-7Yt">
+                            <rect key="frame" x="36" y="4" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="13" id="7QH-ri-RYx"/>
+                                <constraint firstAttribute="width" constant="13" id="mxB-5m-COa"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_allcomments_star_n.png" highlightedImage="ic_allcomments_star_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Flf-dK-eJ1">
+                            <rect key="frame" x="18" y="4" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="gOg-ZK-2H8"/>
+                                <constraint firstAttribute="height" constant="13" id="u9J-Uf-arF"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_allcomments_star_n.png" highlightedImage="ic_allcomments_star_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="fdz-jV-BDf">
+                            <rect key="frame" x="0.0" y="4" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="1NE-7y-TNX"/>
+                                <constraint firstAttribute="height" constant="13" id="Wcb-Ok-QdB"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="rqP-H8-7Yt" firstAttribute="leading" secondItem="Flf-dK-eJ1" secondAttribute="trailing" constant="5" id="3oo-wf-hyi"/>
+                        <constraint firstAttribute="trailing" secondItem="vb4-db-FDT" secondAttribute="trailing" id="5ys-0S-mbv"/>
+                        <constraint firstItem="Flf-dK-eJ1" firstAttribute="leading" secondItem="fdz-jV-BDf" secondAttribute="trailing" constant="5" id="8z2-zP-niH"/>
+                        <constraint firstItem="vb4-db-FDT" firstAttribute="centerY" secondItem="fdz-jV-BDf" secondAttribute="centerY" id="CUO-zm-goa"/>
+                        <constraint firstAttribute="width" constant="85" id="Mn4-jI-s9G"/>
+                        <constraint firstItem="vb4-db-FDT" firstAttribute="leading" secondItem="Ifr-XD-0LC" secondAttribute="trailing" constant="5" id="Mvf-rw-9re"/>
+                        <constraint firstAttribute="height" constant="20" id="NVT-hM-nVJ"/>
+                        <constraint firstItem="fdz-jV-BDf" firstAttribute="leading" secondItem="gAb-8z-lrW" secondAttribute="leading" id="TLZ-1L-KvP"/>
+                        <constraint firstItem="vb4-db-FDT" firstAttribute="centerY" secondItem="gAb-8z-lrW" secondAttribute="centerY" id="Yde-of-BqH"/>
+                        <constraint firstItem="rqP-H8-7Yt" firstAttribute="centerY" secondItem="fdz-jV-BDf" secondAttribute="centerY" id="bJW-bR-GDu"/>
+                        <constraint firstItem="Ifr-XD-0LC" firstAttribute="centerY" secondItem="fdz-jV-BDf" secondAttribute="centerY" id="jI5-kB-Ol5"/>
+                        <constraint firstItem="Ifr-XD-0LC" firstAttribute="leading" secondItem="rqP-H8-7Yt" secondAttribute="trailing" constant="5" id="kT3-qu-uud"/>
+                        <constraint firstItem="Flf-dK-eJ1" firstAttribute="centerY" secondItem="fdz-jV-BDf" secondAttribute="centerY" id="pDi-DZ-JZg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="gAb-8z-lrW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Dn4-IA-8jO"/>
+                <constraint firstItem="gAb-8z-lrW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dVo-3K-gxx"/>
+            </constraints>
+            <connections>
+                <outlet property="img01" destination="vb4-db-FDT" id="fUW-it-HBc"/>
+                <outlet property="img02" destination="Ifr-XD-0LC" id="mpd-B0-jWv"/>
+                <outlet property="img03" destination="rqP-H8-7Yt" id="XxW-zN-2PX"/>
+                <outlet property="img04" destination="Flf-dK-eJ1" id="HkZ-5E-Omc"/>
+                <outlet property="img05" destination="fdz-jV-BDf" id="EAt-2Z-HMu"/>
+            </connections>
+            <point key="canvasLocation" x="-136" y="-19"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_allcomments_star_n.png" width="13" height="13"/>
+        <image name="ic_allcomments_star_p.png" width="13" height="13"/>
+    </resources>
+</document>

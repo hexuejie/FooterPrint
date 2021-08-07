@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PackageCell">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="304"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="304"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Pv-gA-6tY">
+                        <rect key="frame" x="0.0" y="0.0" width="410" height="304"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fR-x0-Pcj" userLabel="BgView">
+                                <rect key="frame" x="0.0" y="0.0" width="410" height="294"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="z2" translatesAutoresizingMaskIntoConstraints="NO" id="n9L-WR-gLo">
+                                        <rect key="frame" x="0.0" y="0.0" width="410" height="212.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="n9L-WR-gLo" secondAttribute="height" multiplier="27:14" id="5pa-G5-UfI"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥188.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-zP-iB1">
+                                        <rect key="frame" x="10" y="268" width="58.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="包含7门课程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bps-fz-10B">
+                                        <rect key="frame" x="326" y="269" width="74" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.56470588239999997" green="0.57647058819999997" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="格子教育运营课套餐" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUd-1y-tai">
+                                        <rect key="frame" x="10" y="217.5" width="147" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bps-fz-10B" secondAttribute="trailing" constant="10" id="8il-mx-do5"/>
+                                    <constraint firstItem="vUd-1y-tai" firstAttribute="leading" secondItem="0fR-x0-Pcj" secondAttribute="leading" constant="10" id="Bqj-es-TDB"/>
+                                    <constraint firstAttribute="bottom" secondItem="gEM-zP-iB1" secondAttribute="bottom" constant="8" id="Cjq-Xs-q2Y"/>
+                                    <constraint firstItem="n9L-WR-gLo" firstAttribute="leading" secondItem="0fR-x0-Pcj" secondAttribute="leading" id="VgY-Cc-73B"/>
+                                    <constraint firstItem="bps-fz-10B" firstAttribute="centerY" secondItem="gEM-zP-iB1" secondAttribute="centerY" id="jW6-CE-w14"/>
+                                    <constraint firstItem="gEM-zP-iB1" firstAttribute="leading" secondItem="0fR-x0-Pcj" secondAttribute="leading" constant="10" id="m7b-4o-fZ9"/>
+                                    <constraint firstItem="n9L-WR-gLo" firstAttribute="top" secondItem="0fR-x0-Pcj" secondAttribute="top" id="o52-68-H5o"/>
+                                    <constraint firstItem="vUd-1y-tai" firstAttribute="top" secondItem="n9L-WR-gLo" secondAttribute="bottom" constant="5" id="tM8-Ux-Brm"/>
+                                    <constraint firstAttribute="trailing" secondItem="n9L-WR-gLo" secondAttribute="trailing" id="ybR-qV-Iq9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0fR-x0-Pcj" firstAttribute="leading" secondItem="5Pv-gA-6tY" secondAttribute="leading" id="4RA-oG-eqs"/>
+                            <constraint firstItem="0fR-x0-Pcj" firstAttribute="top" secondItem="5Pv-gA-6tY" secondAttribute="top" id="9Xd-Td-yHw"/>
+                            <constraint firstAttribute="bottom" secondItem="0fR-x0-Pcj" secondAttribute="bottom" constant="10" id="Dvy-ZT-84N"/>
+                            <constraint firstAttribute="trailing" secondItem="0fR-x0-Pcj" secondAttribute="trailing" id="jUo-RI-ZuR"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5Pv-gA-6tY" secondAttribute="trailing" id="DWD-nt-Opp"/>
+                <constraint firstItem="5Pv-gA-6tY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mbs-xD-YJN"/>
+                <constraint firstAttribute="bottom" secondItem="5Pv-gA-6tY" secondAttribute="bottom" id="PsX-pj-7yg"/>
+                <constraint firstItem="5Pv-gA-6tY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ehh-da-uGS"/>
+            </constraints>
+            <size key="customSize" width="415" height="373"/>
+            <connections>
+                <outlet property="imgView" destination="n9L-WR-gLo" id="dMb-xO-yja"/>
+                <outlet property="lblNum" destination="bps-fz-10B" id="szl-kg-6Hn"/>
+                <outlet property="lblPrice" destination="gEM-zP-iB1" id="RAv-4H-D2h"/>
+                <outlet property="lblTitle" destination="vUd-1y-tai" id="MbW-RS-rij"/>
+            </connections>
+            <point key="canvasLocation" x="156.80000000000001" y="268.96551724137936"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="z2" width="128" height="128"/>
+    </resources>
+</document>

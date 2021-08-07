@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "L5S9LZ88XL.vip.jiaoyin.yk",
+        "paths": [
+          "/app/*"
+          ]
+      }
+    ]
+  }
+}

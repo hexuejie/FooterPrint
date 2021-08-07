@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceVC">
+            <connections>
+                <outlet property="lblCurrentCity" destination="C1G-yd-b6x" id="6Ch-PX-dli"/>
+                <outlet property="lblSelectCity" destination="dRc-hs-7pJ" id="qeP-ZC-xDe"/>
+                <outlet property="tableView" destination="bxA-i8-V3B" id="eRo-ud-fGg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flD-2v-kp6">
+                    <rect key="frame" x="0.0" y="20" width="375" height="163"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1G-yd-b6x">
+                            <rect key="frame" x="16" y="12" width="33" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ov-sD-gJx">
+                            <rect key="frame" x="0.0" y="41" width="375" height="78.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnM-4E-EZP">
+                                    <rect key="frame" x="18" y="16" width="65.5" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dw_city.png" translatesAutoresizingMaskIntoConstraints="NO" id="gJk-wn-J0q">
+                                    <rect key="frame" x="24" y="47.5" width="12" height="14"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRc-hs-7pJ">
+                                    <rect key="frame" x="44" y="46.5" width="40" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="DnM-4E-EZP" firstAttribute="top" secondItem="2Ov-sD-gJx" secondAttribute="top" constant="16" id="GRW-Ur-29t"/>
+                                <constraint firstItem="DnM-4E-EZP" firstAttribute="leading" secondItem="2Ov-sD-gJx" secondAttribute="leading" constant="18" id="Ihu-ZS-AeT"/>
+                                <constraint firstItem="gJk-wn-J0q" firstAttribute="leading" secondItem="2Ov-sD-gJx" secondAttribute="leading" constant="24" id="T3d-GT-7mz"/>
+                                <constraint firstItem="gJk-wn-J0q" firstAttribute="top" secondItem="DnM-4E-EZP" secondAttribute="bottom" constant="12" id="T88-P0-mvb"/>
+                                <constraint firstAttribute="bottom" secondItem="dRc-hs-7pJ" secondAttribute="bottom" constant="16" id="XSo-Fs-61H"/>
+                                <constraint firstItem="dRc-hs-7pJ" firstAttribute="leading" secondItem="gJk-wn-J0q" secondAttribute="trailing" constant="8" id="YMa-tW-fFA"/>
+                                <constraint firstItem="dRc-hs-7pJ" firstAttribute="centerY" secondItem="gJk-wn-J0q" secondAttribute="centerY" id="vnR-Dz-GZ4"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-nc-8Nq">
+                            <rect key="frame" x="16" y="131.5" width="65.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="QW8-nc-8Nq" firstAttribute="top" secondItem="2Ov-sD-gJx" secondAttribute="bottom" constant="12" id="2XP-5Y-dBU"/>
+                        <constraint firstItem="2Ov-sD-gJx" firstAttribute="top" secondItem="C1G-yd-b6x" secondAttribute="bottom" constant="12" id="99w-Bu-2RN"/>
+                        <constraint firstItem="C1G-yd-b6x" firstAttribute="leading" secondItem="flD-2v-kp6" secondAttribute="leading" constant="16" id="Cgl-aS-c83"/>
+                        <constraint firstItem="QW8-nc-8Nq" firstAttribute="leading" secondItem="flD-2v-kp6" secondAttribute="leading" constant="16" id="Qcl-y0-aVQ"/>
+                        <constraint firstItem="2Ov-sD-gJx" firstAttribute="leading" secondItem="flD-2v-kp6" secondAttribute="leading" id="b7e-cj-cBr"/>
+                        <constraint firstItem="C1G-yd-b6x" firstAttribute="top" secondItem="flD-2v-kp6" secondAttribute="top" constant="12" id="dJU-LK-YIf"/>
+                        <constraint firstAttribute="trailing" secondItem="2Ov-sD-gJx" secondAttribute="trailing" id="gJY-37-aCc"/>
+                        <constraint firstAttribute="bottom" secondItem="QW8-nc-8Nq" secondAttribute="bottom" constant="12" id="pCx-vB-4Gw"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bxA-i8-V3B" customClass="XBProvinceTableView">
+                    <rect key="frame" x="0.0" y="183" width="375" height="484"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bxA-i8-V3B" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Uxx-Kf-eYF"/>
+                <constraint firstItem="flD-2v-kp6" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="XtW-IM-aCD"/>
+                <constraint firstItem="flD-2v-kp6" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="htX-mg-sTz"/>
+                <constraint firstItem="flD-2v-kp6" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="jCw-We-9RT"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="bxA-i8-V3B" secondAttribute="trailing" id="wgG-wl-gaX"/>
+                <constraint firstItem="bxA-i8-V3B" firstAttribute="top" secondItem="flD-2v-kp6" secondAttribute="bottom" id="yDJ-2k-wKa"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="bxA-i8-V3B" secondAttribute="bottom" id="yK6-Q6-6aa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dw_city.png" width="12" height="14"/>
+    </resources>
+</document>

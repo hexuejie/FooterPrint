@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="KGk-i7-Jjw" customClass="InformationCell">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="112"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mydefault" translatesAutoresizingMaskIntoConstraints="NO" id="VGm-OJ-XOV">
+                        <rect key="frame" x="12" y="18.5" width="130" height="75"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="75" id="B1B-kU-6Qk"/>
+                            <constraint firstAttribute="width" constant="130" id="XYr-eE-UMZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRC-yW-uxh">
+                        <rect key="frame" x="150" y="18.5" width="240" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvT-8L-jiU">
+                        <rect key="frame" x="150" y="78.5" width="25" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6U-bq-CR7">
+                        <rect key="frame" x="365" y="78.5" width="25" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_eyes" translatesAutoresizingMaskIntoConstraints="NO" id="6bs-pB-6FW">
+                        <rect key="frame" x="345" y="78" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="Wcr-Wk-1bY"/>
+                            <constraint firstAttribute="height" constant="16" id="zYc-Ew-zOZ"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-uC-4iW">
+                        <rect key="frame" x="12" y="111" width="390" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Ngf-rM-5Mg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JvT-8L-jiU" firstAttribute="bottom" secondItem="VGm-OJ-XOV" secondAttribute="bottom" id="6ME-HH-7vf"/>
+                    <constraint firstItem="IRC-yW-uxh" firstAttribute="leading" secondItem="VGm-OJ-XOV" secondAttribute="trailing" constant="8" id="FRW-7f-8RE"/>
+                    <constraint firstItem="JvT-8L-jiU" firstAttribute="leading" secondItem="IRC-yW-uxh" secondAttribute="leading" id="Fvd-X7-JGo"/>
+                    <constraint firstItem="j6U-bq-CR7" firstAttribute="centerY" secondItem="JvT-8L-jiU" secondAttribute="centerY" id="HQt-0T-pH9"/>
+                    <constraint firstAttribute="bottom" secondItem="pc5-uC-4iW" secondAttribute="bottom" id="I6H-0O-O4c"/>
+                    <constraint firstItem="IRC-yW-uxh" firstAttribute="top" secondItem="VGm-OJ-XOV" secondAttribute="top" id="JDS-XS-HsH"/>
+                    <constraint firstItem="j6U-bq-CR7" firstAttribute="trailing" secondItem="IRC-yW-uxh" secondAttribute="trailing" id="Liq-up-fYc"/>
+                    <constraint firstItem="pc5-uC-4iW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="OQW-nZ-eGs"/>
+                    <constraint firstItem="6bs-pB-6FW" firstAttribute="centerY" secondItem="JvT-8L-jiU" secondAttribute="centerY" id="RLd-rO-uvH"/>
+                    <constraint firstItem="j6U-bq-CR7" firstAttribute="leading" secondItem="6bs-pB-6FW" secondAttribute="trailing" constant="4" id="cri-MW-ZKl"/>
+                    <constraint firstItem="6bs-pB-6FW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IRC-yW-uxh" secondAttribute="bottom" constant="6" id="ma6-JN-1VK"/>
+                    <constraint firstAttribute="trailing" secondItem="IRC-yW-uxh" secondAttribute="trailing" constant="12" id="nEB-je-Or5"/>
+                    <constraint firstItem="VGm-OJ-XOV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="tZo-s6-mTU"/>
+                    <constraint firstAttribute="trailing" secondItem="pc5-uC-4iW" secondAttribute="trailing" id="tey-ni-3zA"/>
+                    <constraint firstItem="VGm-OJ-XOV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uAR-u2-dMm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="imgView" destination="VGm-OJ-XOV" id="NqS-rg-aHg"/>
+                <outlet property="lblNum" destination="j6U-bq-CR7" id="Ivx-Zw-rVJ"/>
+                <outlet property="lblTime" destination="JvT-8L-jiU" id="qrS-1R-qIp"/>
+                <outlet property="lblTitle" destination="IRC-yW-uxh" id="Kqv-Sb-oTj"/>
+            </connections>
+            <point key="canvasLocation" x="72" y="184.40779610194903"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_eyes" width="128" height="128"/>
+        <image name="mydefault" width="128" height="128"/>
+    </resources>
+</document>

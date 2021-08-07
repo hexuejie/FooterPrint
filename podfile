@@ -1,0 +1,32 @@
+source 'https://cdn.cocoapods.org/'
+platform :ios, '9.0'
+target ‘FootPrint’ do
+
+use_frameworks!
+pod 'AFNetworking','~> 4.0'
+pod 'Masonry'
+pod 'MJExtension', '~> 3.0.13'
+pod 'MJRefresh', '~> 3.1.12'
+pod 'JGProgressHUD'
+pod 'MMMaterialDesignSpinner'
+pod 'IQKeyboardManager'
+pod 'SDWebImage', '~> 4.0.0'
+#pod 'Realm'
+pod 'UMengAnalytics'
+pod 'TZImagePickerController'        
+#pod 'JAnalytics'
+pod 'JPush' 
+
+pod 'PLPlayerKit'
+
+pod 'Bugly'
+pod 'TalkfunMediaFramework','~> 1.9.2'
+pod 'Socket.IO-Client-Swift', '~> 13.1.0'
+pod 'JFImagePicker', '~> 1.0.0'
+pod 'KissXML','~> 5.1.2'
+pod 'SSZipArchive','~> 1.8.1'
+pod 'AgoraRtcEngine_iOS','~> 2.9.0'
+
+pod 'UMCCommon'
+pod 'UMCCommonLog'
+end
