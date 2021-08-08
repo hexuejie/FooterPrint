@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
+@property (nonatomic, strong) NSArray *list;
 @end
 
 NS_ASSUME_NONNULL_END

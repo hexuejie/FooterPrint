@@ -5925,7 +5925,7 @@
 					"$(PROJECT_DIR)/FootPrint/dis/Common",
 					"$(PROJECT_DIR)/FootPrint/dis/Common/OpenSDK1.8.7.1_NoPay",
 				);
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5995,7 +5995,7 @@
 					"$(PROJECT_DIR)/FootPrint/dis/Common",
 					"$(PROJECT_DIR)/FootPrint/dis/Common/OpenSDK1.8.7.1_NoPay",
 				);
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

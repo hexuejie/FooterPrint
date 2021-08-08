@@ -64,9 +64,8 @@
     //placeholder_method_call//
     self.navigationItem.title = @"脚印云课";
     self.leftButton.hidden = YES;
-    NSMutableArray *arr = @[].mutableCopy;
     
-    self.dataSource = [NSArray array];
+    self.dataSource = [NSMutableArray array];
     
 
     if (@available(iOS 11.0, *)) {
@@ -274,7 +273,9 @@
     HomelModel *model = self.dataSource[indexPath.section];
     NSInteger type = [model.type integerValue];
     
-        if (type == 1) { //banner
+        if (type == -1) { //banner
+            return 100;
+        }else if (type == 1) { //banner
             return SCREEN_WIDTH*140/345.0;
         }else if (type == 2){ //搜索
             
@@ -369,30 +370,40 @@
     title.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
     title.text = self.dataSource[section].type_name;
     [view addSubview:title];
-    [title mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.leading.mas_equalTo(19.0);//43
-        make.centerY.mas_equalTo(view);
-    }];
-    UILabel *title2 = [[UILabel alloc] init];
-    title2.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
-    title2.textColor = UIColorFromRGB(0x4B8096);
-    [view addSubview:title2];
-    [title2 mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.leading.equalTo(title.mas_trailing).offset(1);
-        make.centerY.mas_equalTo(view);
-    }];
-    title2.text = @"·今日 20:00";
     
-//    UIImageView *iconimg = [[UIImageView alloc] init];
-//    iconimg.image = [UIImage imageNamed:@"home_course_first_headTag"];
-//    [view addSubview:iconimg];
-//    [iconimg mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.leading.mas_equalTo(view).offset(18);
-//        make.centerY.mas_equalTo(view).offset(0);
-//    }];
+    if ([model.type intValue] != -1) {
+        [title mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.leading.mas_equalTo(19.0);//43
+            make.centerY.mas_equalTo(view);
+        }];
+    }else{
+        [title mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.leading.mas_equalTo(43.0);//43
+            make.centerY.mas_equalTo(view);
+        }];
+        UILabel *title2 = [[UILabel alloc] init];
+        title2.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
+        title2.textColor = UIColorFromRGB(0x4B8096);
+        [view addSubview:title2];
+        [title2 mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.leading.equalTo(title.mas_trailing).offset(1);
+            make.centerY.mas_equalTo(view);
+        }];
+        title2.text = @"·今日 20:00";
+        
+        UIImageView *iconimg = [[UIImageView alloc] init];
+        iconimg.image = [UIImage imageNamed:@"home_course_first_headTag"];
+        [view addSubview:iconimg];
+        [iconimg mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+            make.leading.mas_equalTo(view).offset(18);
+            make.centerY.mas_equalTo(view).offset(0);
+        }];
+    }
+    
     
     UIImageView *img = [[UIImageView alloc] init];
     img.image = [UIImage imageNamed:@"mine_arrow"];
@@ -458,7 +469,20 @@
     //placeholder_method_call//
     WS(weakself)
 
-        if (type == 1) { //banner
+    if (type == -1) {
+        
+        HomeCourseHorizontalCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"HomeCourseHorizontalCell"];
+        cell.type = 2;
+        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+//        cell.dataSource = model.content;
+//        cell.BlockLiveClick = ^(LiveModel * _Nonnull model) {
+//
+//            LiveDetaileVC *next = [[LiveDetaileVC alloc] init];
+//            next.liveId = model.id;
+//            [self.navigationController pushViewController:next animated:YES];
+//        };
+        return cell;
+    }else if (type == 1) { //banner
             
             HomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeBannerCell"];
             cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -524,29 +548,18 @@
             }
         }else if (type == 6){ //套餐 //左右滑
             
-            HomeCourseHorizontalCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"HomeCourseCell"];
-            cell.type = 2;
+            HomePackageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomePackageCell"];
             cell.selectionStyle = UITableViewCellSeparatorStyleNone;
             cell.dataSource = model.content;
-            cell.BlockLiveClick = ^(LiveModel * _Nonnull model) {
-                
-                LiveDetaileVC *next = [[LiveDetaileVC alloc] init];
-                next.liveId = model.id;
+            cell.BlockPackageClick = ^(HomePackaglModel * _Nonnull model) {
+
+                PackageDetailVC *next = [[PackageDetailVC alloc] init];
+                next.packId = model.id;
+                next.banner = model.banner;
                 [self.navigationController pushViewController:next animated:YES];
             };
+
             return cell;
-//            HomePackageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomePackageCell"];
-//            cell.selectionStyle = UITableViewCellSeparatorStyleNone;
-//            cell.dataSource = model.content;
-//            cell.BlockPackageClick = ^(HomePackaglModel * _Nonnull model) {
-//
-//                PackageDetailVC *next = [[PackageDetailVC alloc] init];
-//                next.packId = model.id;
-//                next.banner = model.banner;
-//                [self.navigationController pushViewController:next animated:YES];
-//            };
-//
-//            return cell;
         }else if (type == 4){ //富文本
             
             HomeRichTexCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRichTexCell"];
@@ -729,7 +742,7 @@
 
 - (void)loadNewData{
     //placeholder_method_call//
-
+    self.dataSource = [NSMutableArray array];
     [self loadData];
 }
 
@@ -758,8 +771,8 @@
                     mutableArr = [NSMutableArray arrayWithObject:weakself.saleModel];
                 }
             }
-            weakself.dataSource = mutableArr;
-            
+//            weakself.dataSource = mutableArr;
+            [weakself.dataSource addObjectsFromArray:mutableArr];
             
             [weakself.tableView reloadData];
         }
@@ -798,7 +811,8 @@
                     [weakself.dataSource insertObject:model atIndex:weakself.dataSource.count];
                 }
             } else {
-                weakself.dataSource = [NSMutableArray arrayWithObject:model];
+//                weakself.dataSource = [NSMutableArray arrayWithObject:model];
+                [weakself.dataSource addObject:model];
             }
             
             [weakself.tableView reloadData];
@@ -809,6 +823,16 @@
     
     [APPRequest GET:[NSString stringWithFormat:@"%@%@",HOST_ACTION2,@"/liveos/api/ykapp/front/livePrepare/page"] parameters:nil finished:^(AjaxResult *result) {
         NSLog(@"result.data %@",result.data);
+        HomelModel *model = [[HomelModel alloc] init];
+        model.type = @"-1";
+        model.list = @[@"",@"",@""];
+        if (weakself.dataSource.count>2) {
+            [weakself.dataSource insertObject:model atIndex:1];
+        }else{
+            [weakself.dataSource addObject:model];
+        }
+        
+        
         [self.tableView.mj_header endRefreshing];
         if (result.code == AjaxResultStateSuccess) {
 //            NSArray *array = [HomelModel mj_objectArrayWithKeyValuesArray:result.data[@"list"]];
