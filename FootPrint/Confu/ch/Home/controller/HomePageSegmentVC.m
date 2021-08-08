@@ -39,7 +39,7 @@
 - (NSMutableArray *)musicCategories {
     if (!_musicCategories) {
         _musicCategories = [NSMutableArray new];
-//        [_musicCategories addObject:@{@"id":@"8",@"name":@"全部"}];
+        [_musicCategories addObject:@{@"id":@"-1",@"cate_name":@"首页"}];
     }
     return _musicCategories;
 }

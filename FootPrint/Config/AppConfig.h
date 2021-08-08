@@ -36,15 +36,15 @@ typedef enum : NSUInteger {
 // Action 地址
 
 //
-//#define HOST_ACTION    @"https://yk.jiaoyin.vip/api/app"
+#define HOST_ACTION    @"https://yk.jiaoyin.vip/api/app"
 //#define HOST_IMG    @"https://yk.jiaoyin.vip"
 //#define kWXAppId @"wx749661e8f174d2b6"
 //#define kWXAppSecreat @"c8377aa3b97998af11c34dfa1eeb69ad"
 //#define kJPushAppkey @"3c5a94cc6e49a7706a696ce11" //3c5a94cc6e49a7706a696ce11
 //#define Wechat_Jump @"yk.jiaoyin.vip://"
 
+#define HOST_ACTION2    @"http://wangshuo.airofficechina.com"
 
-#define HOST_ACTION    @"https://ketang.grazy.cn/api/app"
 #define HOST_IMG    @"https://ketang.grazy.cn/"
 #define kWXAppId @"wx9f8d870892328f8f"  // wx9f8d870892328f8f  正式 wx749661e8f174d2b6
 #define kWXAppSecreat @"c8377aa3b97998af11c34dfa1eeb69ad"

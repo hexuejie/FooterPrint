@@ -784,6 +784,9 @@
 		A1E7F29B26BD34C800079362 /* tip_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E7F29A26BD34C800079362 /* tip_close@2x.png */; };
 		A1E7F2D526BE737C00079362 /* HomeHeadFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2D326BE737C00079362 /* HomeHeadFirstCell.m */; };
 		A1E7F2D626BE737C00079362 /* HomeHeadFirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E7F2D426BE737C00079362 /* HomeHeadFirstCell.xib */; };
+		A1E7F2DA26BE7B6800079362 /* HomeCourseHorizontalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E7F2D926BE7B6800079362 /* HomeCourseHorizontalCell.m */; };
+		A1E7F2DE26BE7F9100079362 /* home_course_first_headTag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E7F2DC26BE7F9100079362 /* home_course_first_headTag@2x.png */; };
+		A1E7F2DF26BE7F9100079362 /* home_course_first_headTag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E7F2DD26BE7F9100079362 /* home_course_first_headTag@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2053,6 +2056,10 @@
 		A1E7F2D226BE737C00079362 /* HomeHeadFirstCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHeadFirstCell.h; sourceTree = "<group>"; };
 		A1E7F2D326BE737C00079362 /* HomeHeadFirstCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHeadFirstCell.m; sourceTree = "<group>"; };
 		A1E7F2D426BE737C00079362 /* HomeHeadFirstCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeadFirstCell.xib; sourceTree = "<group>"; };
+		A1E7F2D826BE7B6800079362 /* HomeCourseHorizontalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCourseHorizontalCell.h; sourceTree = "<group>"; };
+		A1E7F2D926BE7B6800079362 /* HomeCourseHorizontalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCourseHorizontalCell.m; sourceTree = "<group>"; };
+		A1E7F2DC26BE7F9100079362 /* home_course_first_headTag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_course_first_headTag@2x.png"; sourceTree = "<group>"; };
+		A1E7F2DD26BE7F9100079362 /* home_course_first_headTag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_course_first_headTag@3x.png"; sourceTree = "<group>"; };
 		FC23A4D48CABBCA05DBFA086 /* Pods-FootPrint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootPrint.release.xcconfig"; path = "Pods/Target Support Files/Pods-FootPrint/Pods-FootPrint.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2167,6 +2174,8 @@
 				A1E7F2D226BE737C00079362 /* HomeHeadFirstCell.h */,
 				A1E7F2D326BE737C00079362 /* HomeHeadFirstCell.m */,
 				A1E7F2D426BE737C00079362 /* HomeHeadFirstCell.xib */,
+				A1E7F2D826BE7B6800079362 /* HomeCourseHorizontalCell.h */,
+				A1E7F2D926BE7B6800079362 /* HomeCourseHorizontalCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3680,6 +3689,8 @@
 				46A95D9F251992FC00918FBF /* qiniuplay */,
 				462811172485ED8A00CFAC11 /* ic_audiopause@2x.png */,
 				462811082485ED8A00CFAC11 /* ic_audiopause@3x.png */,
+				A1E7F2DC26BE7F9100079362 /* home_course_first_headTag@2x.png */,
+				A1E7F2DD26BE7F9100079362 /* home_course_first_headTag@3x.png */,
 				46B1D5BC24878D5900E2B56E /* order_gold@3x.jpg */,
 				A1E7F29A26BD34C800079362 /* tip_close@2x.png */,
 				46B1D5BD24878D5900E2B56E /* unselected@3x.png */,
@@ -5112,7 +5123,9 @@
 				46B1D89224878D5F00E2B56E /* PhoneBookVC.xib in Resources */,
 				462810CD2485E71400CFAC11 /* QrCdeView.xib in Resources */,
 				46B1D8C624878D5F00E2B56E /* blueProgress.png in Resources */,
+				A1E7F2DE26BE7F9100079362 /* home_course_first_headTag@2x.png in Resources */,
 				46B1D8EF24878D5F00E2B56E /* cool.png in Resources */,
+				A1E7F2DF26BE7F9100079362 /* home_course_first_headTag@3x.png in Resources */,
 				46B1D84824878D5E00E2B56E /* TalkfunSignViewController.xib in Resources */,
 				462810B82485E71400CFAC11 /* SetPwdVC.xib in Resources */,
 				46B1D3BD248773B200E2B56E /* more@3x.png in Resources */,
@@ -5648,6 +5661,7 @@
 				46B1D81C24878D5E00E2B56E /* ChapterModel.m in Sources */,
 				46B1D7D824878D5E00E2B56E /* PackageModel.m in Sources */,
 				46B1D81824878D5E00E2B56E /* PlaybackQuestionModel.m in Sources */,
+				A1E7F2DA26BE7B6800079362 /* HomeCourseHorizontalCell.m in Sources */,
 				46B1D87024878D5E00E2B56E /* OrderModel.m in Sources */,
 				462810542485E71400CFAC11 /* CommentsVC.m in Sources */,
 				46B1D86224878D5E00E2B56E /* evaluateView.m in Sources */,

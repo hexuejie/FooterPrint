@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeCourseCell : UITableViewCell
 //placeholder_property//
-@property (nonatomic, assign) NSInteger type;//3直播预约
+@property (nonatomic, assign) NSInteger type;
 //placeholder_property//
 @property (nonatomic, strong) NSArray *dataSource;
 //placeholder_method_declare//

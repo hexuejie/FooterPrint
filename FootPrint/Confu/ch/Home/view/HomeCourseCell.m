@@ -8,7 +8,6 @@
 
 #import "HomeCourseCell.h"
 #import "HomeHeadCell.h"
-#import "HomeHeadFirstCell.h"
 
 @interface HomeCourseCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -71,7 +70,6 @@
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCell" bundle:nil] forCellWithReuseIdentifier:@"HomeHeadCell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadFirstCell" bundle:nil] forCellWithReuseIdentifier:@"HomeHeadFirstCell"];
     
     [self.contentView addSubview:self.collectionView];
 }
@@ -87,10 +85,6 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.type == 3) {
-        HomeHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadCell" forIndexPath:indexPath];
-        return cell;
-    }
     
     HomeHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadCell" forIndexPath:indexPath];
 //    cell.contentView.backgroundColor = [UIColor clearColor];
@@ -106,15 +100,6 @@
         cell.liveModel = self.dataSource[indexPath.row];
     }
     return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    if (self.type == 3) {
-        return CGSizeMake((SCREEN_WIDTH - 50), 80);
-    }
-    CGFloat width = (SCREEN_WIDTH - 36)/2;
-    CGFloat height =  width*9.0/16.0 + 110;
-    return CGSizeMake(width, height);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

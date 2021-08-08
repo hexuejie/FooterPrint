@@ -16,29 +16,35 @@
 
 +(void)GET:(NSString *)URLString parameters:(NSDictionary *)dicParam finished:(void (^)(AjaxResult *result))block{
     dicParam = [APPRequest sign:URLString parameters:dicParam];
-#if DEBUG
     NSString *str = APP_ACTION(URLString);
+    if ([URLString hasPrefix:@"http"]) {
+        str = URLString;
+    }
+#if DEBUG
+    
     NSLog(@"请求地址：%@",[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:str parameters:dicParam error:nil]);
 #endif
-    [AFNetworkUtils GET:APP_ACTION(URLString) parameters:dicParam callBackBlock:^(BOOL success, NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [AFNetworkUtils GET:str parameters:dicParam callBackBlock:^(BOOL success, NSURLSessionDataTask *task, id responseObject, NSError *error) {
         [APPRequest handleAjaxResult:success task:task data:responseObject error:error finished:block];
     }];
 }
 
 +(void)POST:(NSString *)URLString parameters:(NSDictionary *)dicParam finished:(void (^)(AjaxResult *result))block{
     dicParam = [APPRequest sign:URLString parameters:dicParam];
-#if DEBUG
     NSString *str = APP_ACTION(URLString);
-   
+    if ([URLString hasPrefix:@"http"]) {
+        str = URLString;
+    }
+#if DEBUG
     NSLog(@"请求地址：%@",[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:str parameters:dicParam error:nil]);
 #endif
 //    if ([URLString containsString:@"update"]) {
 //        str = @"";
 //       }
-    NSLog(@"%@",APP_ACTION(URLString));
+    NSLog(@"%@",str);
     NSLog(@"%@",dicParam);
 
-    [AFNetworkUtils POST:APP_ACTION(URLString) parameters:dicParam callBackBlock:^(BOOL success, NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [AFNetworkUtils POST:str parameters:dicParam callBackBlock:^(BOOL success, NSURLSessionDataTask *task, id responseObject, NSError *error) {
         
         [APPRequest handleAjaxResult:success task:task data:responseObject error:error finished:block];
     }];
@@ -46,11 +52,14 @@
 
 +(void)POSTImage:(NSString *)URLString parameters:(NSDictionary *)dicParam andImages:(NSArray<UIImage *> *)images finished:(void (^)(AjaxResult *result))block{
     dicParam = [APPRequest sign:URLString parameters:dicParam];
-#if DEBUG
     NSString *str = APP_ACTION(URLString);
+    if ([URLString hasPrefix:@"http"]) {
+        str = URLString;
+    }
+#if DEBUG
     NSLog(@"请求地址：%@",[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:str parameters:dicParam error:nil]);
 #endif
-    [AFNetworkUtils POSTBody:APP_ACTION(URLString) parameters:dicParam constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [AFNetworkUtils POSTBody:str parameters:dicParam constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         if (images && [images count] > 0) {
             for (NSInteger index = 0; index < images.count; index++) {
                 
@@ -66,11 +75,14 @@
 
 +(void)POSTImage:(NSString *)URLString parameters:(NSDictionary *)dicParam andImages:(NSArray<UIImage *> *)images andImageNames:(NSArray<NSString *> *)imageNames finished:(void (^)(AjaxResult *result))block{
     dicParam = [APPRequest sign:URLString parameters:dicParam];
-#if DEBUG
     NSString *str = APP_ACTION(URLString);
+    if ([URLString hasPrefix:@"http"]) {
+        str = URLString;
+    }
+#if DEBUG
     NSLog(@"请求地址：%@",[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:str parameters:dicParam error:nil]);
 #endif
-    [AFNetworkUtils POSTBody:APP_ACTION(URLString) parameters:dicParam constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [AFNetworkUtils POSTBody:str parameters:dicParam constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         if (images && [images count] > 0) {
             for (NSInteger index = 0; index < images.count; index++) {
                 

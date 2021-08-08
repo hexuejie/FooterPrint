@@ -35,6 +35,8 @@
 #import "SaleSuperCell.h"
 #import "SaleModel.h"
 #import "GroupVC.h"
+#import "HomeCourseHorizontalCell.h"
+
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray<HomelModel *> *dataSource;
@@ -98,6 +100,7 @@
     [self.tableView registerClass:[HomeRichTexCell class] forCellReuseIdentifier:@"HomeRichTexCell"];
     [self.tableView registerClass:[HomePackageCell class] forCellReuseIdentifier:@"HomePackageCell"];
     [self.tableView registerClass:[HomeCourseCell class] forCellReuseIdentifier:@"HomeCourseCell"];
+    [self.tableView registerClass:[HomeCourseHorizontalCell class] forCellReuseIdentifier:@"HomeCourseHorizontalCell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"SaleSuperCell" bundle:nil] forCellReuseIdentifier:@"SaleSuperCell"];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -363,34 +366,53 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 41)];
     view.backgroundColor = [UIColor colorWithHex:0xffffff];
     UILabel *title = [[UILabel alloc] init];
-    title.font = [UIFont boldSystemFontOfSize:18.0];
+    title.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
     title.text = self.dataSource[section].type_name;
     [view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.leading.mas_equalTo(35.0);
+        make.leading.mas_equalTo(19.0);//43
         make.centerY.mas_equalTo(view);
     }];
+    UILabel *title2 = [[UILabel alloc] init];
+    title2.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
+    title2.textColor = UIColorFromRGB(0x4B8096);
+    [view addSubview:title2];
+    [title2 mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.leading.equalTo(title.mas_trailing).offset(1);
+        make.centerY.mas_equalTo(view);
+    }];
+    title2.text = @"·今日 20:00";
     
-//    UIImageView *img = [[UIImageView alloc] init];
-//    img.image = [UIImage imageNamed:@"mine_arrow"];
-//    [view addSubview:img];
-//    [img mas_makeConstraints:^(MASConstraintMaker *make) {
+//    UIImageView *iconimg = [[UIImageView alloc] init];
+//    iconimg.image = [UIImage imageNamed:@"home_course_first_headTag"];
+//    [view addSubview:iconimg];
+//    [iconimg mas_makeConstraints:^(MASConstraintMaker *make) {
 //
-//        make.trailing.mas_equalTo(view).offset(-12);
-//        make.centerY.mas_equalTo(view).offset(8);
+//        make.leading.mas_equalTo(view).offset(18);
+//        make.centerY.mas_equalTo(view).offset(0);
 //    }];
-//    img.hidden = [model.show_more integerValue] == 1?NO:YES;
+    
+    UIImageView *img = [[UIImageView alloc] init];
+    img.image = [UIImage imageNamed:@"mine_arrow"];
+    [view addSubview:img];
+    [img mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.trailing.mas_equalTo(view).offset(-14);
+        make.centerY.mas_equalTo(view).offset(0);
+    }];
+    img.hidden = [model.show_more integerValue] == 1?NO:YES;
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
     btn.hidden = [model.show_more integerValue] == 1?NO:YES;
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [btn setTitle:@"更多" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorWithHex:0x323233] forState:UIControlStateNormal];
+    [btn setTitle:@"查看更多" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithHex:0x999999] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [view addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.mas_equalTo(view).offset(-20.0);
+        make.trailing.mas_equalTo(view).offset(-28.0);
 
         make.top.left.bottom.mas_equalTo(view);
     }];
@@ -502,18 +524,29 @@
             }
         }else if (type == 6){ //套餐 //左右滑
             
-            HomePackageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomePackageCell"];
+            HomeCourseHorizontalCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"HomeCourseCell"];
+            cell.type = 2;
             cell.selectionStyle = UITableViewCellSeparatorStyleNone;
             cell.dataSource = model.content;
-            cell.BlockPackageClick = ^(HomePackaglModel * _Nonnull model) {
-              
-                PackageDetailVC *next = [[PackageDetailVC alloc] init];
-                next.packId = model.id;
-                next.banner = model.banner;
+            cell.BlockLiveClick = ^(LiveModel * _Nonnull model) {
+                
+                LiveDetaileVC *next = [[LiveDetaileVC alloc] init];
+                next.liveId = model.id;
                 [self.navigationController pushViewController:next animated:YES];
             };
-            
             return cell;
+//            HomePackageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomePackageCell"];
+//            cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+//            cell.dataSource = model.content;
+//            cell.BlockPackageClick = ^(HomePackaglModel * _Nonnull model) {
+//
+//                PackageDetailVC *next = [[PackageDetailVC alloc] init];
+//                next.packId = model.id;
+//                next.banner = model.banner;
+//                [self.navigationController pushViewController:next animated:YES];
+//            };
+//
+//            return cell;
         }else if (type == 4){ //富文本
             
             HomeRichTexCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRichTexCell"];
@@ -533,18 +566,18 @@
             
             return cell;
         }else if (type == 7){ //直播
-            
+
             HomeCourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCourseCell"];
             cell.type = 2;
             cell.selectionStyle = UITableViewCellSeparatorStyleNone;
             cell.dataSource = model.content;
             cell.BlockLiveClick = ^(LiveModel * _Nonnull model) {
-                
+
                 LiveDetaileVC *next = [[LiveDetaileVC alloc] init];
                 next.liveId = model.id;
                 [self.navigationController pushViewController:next animated:YES];
             };
-            
+
             return cell;
         } else if (type == 10) {
             PictureAndTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PictureAndTextCell"];
@@ -702,9 +735,13 @@
 
 - (void)loadData{
    //placeholder_method_call//
-
+    if (!_category) {
+        _category = @"";
+    }
+    
+    
     WS(weakself)
-    [APPRequest GET:@"/index?v=1.0" parameters:nil finished:^(AjaxResult *result) {
+    [APPRequest GET:@"/index" parameters:nil finished:^(AjaxResult *result) {
 
         [self.tableView.mj_header endRefreshing];
         if (result.code == AjaxResultStateSuccess) {
@@ -735,15 +772,13 @@
         }
     }];
     
-    if (!_category) {
-        _category = @"";
-    }
-    [APPRequest GET:@"/searchHomeCourse" parameters:@{@"category":_category} finished:^(AjaxResult *result) {
+
+    [APPRequest GET:@"/goodsDiscountHome" parameters:nil finished:^(AjaxResult *result) {
 
 //        [self.tableView.mj_header endRefreshing];
         if (result.code == AjaxResultStateSuccess) {
 
-            NSLog(@"result.data %@",result.data);
+       
              
             NSMutableArray *mutableArr = [NSMutableArray array];
             self.dataSource = mutableArr;
@@ -766,30 +801,39 @@
                 weakself.dataSource = [NSMutableArray arrayWithObject:model];
             }
             
-            
-        
-          
             [weakself.tableView reloadData];
-
-
-            
-
-            
-            
             
         }
         
-        
-
-       
-        
     }];
     
-    
-    
-    
-    
-    
+    [APPRequest GET:[NSString stringWithFormat:@"%@%@",HOST_ACTION2,@"/liveos/api/ykapp/front/livePrepare/page"] parameters:nil finished:^(AjaxResult *result) {
+        NSLog(@"result.data %@",result.data);
+        [self.tableView.mj_header endRefreshing];
+        if (result.code == AjaxResultStateSuccess) {
+//            NSArray *array = [HomelModel mj_objectArrayWithKeyValuesArray:result.data[@"list"]];
+//            NSMutableArray *mutableArr = array.mutableCopy;
+//            if (weakself.saleModel) {
+//                if (mutableArr.count > 0) {
+//                    if (mutableArr.count > 2) {
+//                        [mutableArr insertObject:weakself.saleModel atIndex:3];
+//                    } else {
+//                        [mutableArr insertObject:weakself.saleModel atIndex:weakself.dataSource.count];
+//                    }
+//                } else {
+//                    mutableArr = [NSMutableArray arrayWithObject:weakself.saleModel];
+//                }
+//            }
+//            weakself.dataSource = mutableArr;
+//
+//
+//            [weakself.tableView reloadData];
+        }
+//        if (self.dataSource && self.dataSource.count > 0) {
+//            [self performSelector:@selector(hideEmptyView) withObject:nil afterDelay:1];
+//        }
+    }];
+
 }
 
 
