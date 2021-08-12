@@ -267,7 +267,17 @@
         
         _webView.navigationDelegate = self;
  
-        if (self.index == 2) {
+        if (self.index == -2) {
+            
+            self.navigationItem.title = @"脚印互动VIP";
+            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://wxbf1f9f584a3864e7.activity.jiaoyin.vip/jiaoyin/yk_vip/?aa=11&token=%@",Ktoken]]]];
+            
+        }else if (self.index == -1) {
+            
+            self.navigationItem.title = @"展业工具";
+            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://download-app.jiaoyin.vip/jiaoyin/tools2/#/Home2?token=%@",Ktoken]]]];
+            
+        }else if (self.index == 2) {
                self.navigationItem.title = @"签单工具";
                [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://download-app.jiaoyin.vip/jiaoyin/tools/home/?aaa2#/home"]]];
            } else if (self.index == 3) {

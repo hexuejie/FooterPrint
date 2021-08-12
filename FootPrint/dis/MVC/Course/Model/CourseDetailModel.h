@@ -130,6 +130,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface CourseDetailModel : JKDBModel
 
+@property (nonatomic, strong) NSString *card_chart;
+@property (nonatomic, strong) NSString *is_discount_vip;
+@property (nonatomic, strong) NSString *vip_price;
 @property (nonatomic, strong) NSString *audit;
 @property (nonatomic, strong) NSString *banner;
 @property (nonatomic, strong) NSArray<CourseChapterModel *> *chapter_video;

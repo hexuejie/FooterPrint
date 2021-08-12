@@ -369,6 +369,11 @@
 
 #pragma mark - 事件
 //placeholder_method_impl//
+- (void)vipArrowButtonClick{
+    WebsVC *vc = [WebsVC new];
+    vc.index = -2;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)SignClick:(UIButton *)sender{
     if (!Ktoken) {
@@ -477,7 +482,20 @@
     
     
 }
-
+//UserModel *user = [APPUserDefault getCurrentUserFromLocal];
+//if ([user.vip integerValue] > 0) {
+//    self.disContentLabel.textColor = UIColorFromRGB(0xFF9242);
+//    self.disContentLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
+//
+//}else{
+//    self.disContentLabel.textColor = UIColorFromRGB(0x479297);
+//    self.disContentLabel.font = [UIFont systemFontOfSize:14];
+//    self.disContentLabel.text = @"您还不是会员，点击升级";
+//
+//    UITapGestureRecognizer *taptap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(discountBgViewClick)];
+//    self.discountBgView.userInteractionEnabled = YES;
+//    [self.discountBgView addGestureRecognizer:taptap];
+//}
 - (void)loadData{
     if (!Ktoken) {
         return;
@@ -562,6 +580,7 @@
     [self.collectionView2 reloadData];
 }
 
+
 - (void)createCollectionView{
     
     CGFloat width = SCREEN_WIDTH/3.8;
@@ -618,6 +637,7 @@
     if (_headView == nil) {
         
         _headView = [[[NSBundle mainBundle] loadNibNamed:@"MineHeadView" owner:nil options:nil] lastObject];
+        [_headView.vipArrowButton addTarget:self action:@selector(vipArrowButtonClick) forControlEvents:UIControlEventTouchUpInside];
         _headView.BlockOperationClick = ^(NSInteger type) {
             if (!Ktoken) {
                 [weakself loginAction];

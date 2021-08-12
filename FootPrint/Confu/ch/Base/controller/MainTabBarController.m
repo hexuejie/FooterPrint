@@ -13,6 +13,7 @@
 #import "HomePageSegmentVC.h"
 #import "NeMneVC.h"
 #import "InformationVC.h"
+#import "WebsVC.h"
 @interface MainTabBarController ()<UITabBarControllerDelegate,UITabBarDelegate>
 
 @property (nonatomic, strong) NSMutableArray *childs;
@@ -63,6 +64,7 @@
         
         datas = @[
                   @{@"TabName":@"首页"},
+                  @{@"TabName":@"展业工具"},
                   @{@"TabName":@"课程"},
                   @{@"TabName":@"我的"}
                   ];
@@ -84,42 +86,35 @@
         }
         
         if (i == 1) {
-                  vc = [[CourseVC alloc] init];
+            WebsVC *tempVC = [[WebsVC alloc] init];
+            tempVC.index = -1;
+            vc = tempVC;
             image = [[UIImage imageNamed:@"icon_course_n"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                     selectImage = [[UIImage imageNamed:@"icon_course_p"]
+            selectImage = [[UIImage imageNamed:@"icon_course_p"]
                      imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
               }
-        if (datas.count == 3 && i == 2) {
+        
+        if (i == 2) {
+                  vc = [[CourseVC alloc] init];
+            image = [[UIImage imageNamed:@"icon_tool_n"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                     selectImage = [[UIImage imageNamed:@"icon_tool_p"]
+                     imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            
+              }
+        if (i == 3) {
             vc = [[NeMneVC alloc] init];
             image = [[UIImage imageNamed:@"icon_my_n"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
                                selectImage = [[UIImage imageNamed:@"icon_my_p"]
                                imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
         }
-        
-//        if (datas.count == 4 ) {
-//            if (i == 2) {
-//                vc = [[InformationVC alloc] init];
-//                image = [UIImage imageNamed:@"icon_information_n"];
-//                                   selectImage = [[UIImage imageNamed:@"icon_information_p"]
-//                                   imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//            }
-//            if (i == 3) {
-//                vc = [[NeMneVC alloc] init];
-//                image = [UIImage imageNamed:@"icon_my_n"];
-//                                   selectImage = [[UIImage imageNamed:@"icon_my_p"]
-//                                   imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//            }
-//
-//            }
-        
-        //placeholder_method_call//
 
       
         vc.tabBarItem.title = data[@"TabName"];
         vc.tabBarItem.image = image;
         vc.tabBarItem.selectedImage = selectImage;
+        
         
         BaseNavViewController *nav = [[BaseNavViewController alloc] initWithRootViewController:vc];
         nav.tabBarItem.tag = i;

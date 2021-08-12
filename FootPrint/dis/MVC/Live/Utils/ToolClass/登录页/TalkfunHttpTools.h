@@ -12,4 +12,8 @@
 
 + (void)post:(NSString *)url params:(NSDictionary *)params callback:(void (^)(id))callback;
 
++ (void)livePost:(NSString *)url params:(NSDictionary *)params callback:(void (^)(id))callback;
+
++ (void)liveGet:(NSString *)url params:(NSDictionary *)params callback:(void (^)(id))callback;
+
 @end

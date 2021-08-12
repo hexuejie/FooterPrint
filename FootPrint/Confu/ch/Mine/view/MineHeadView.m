@@ -79,8 +79,44 @@
     self.lblIntegral.text = model.now_integral;
     //placeholder_method_call//
 
+    
+    if ([model.vip integerValue] > 0) { //购买
+        NSString *weekDayStr = @"日";
+       NSInteger weekDay = [self getWeekDayFordate];
+        switch (weekDay) {
+            case 1:
+                weekDayStr = @"一";
+                break;
+            case 2:
+                weekDayStr = @"二";
+                break;
+            case 3:
+                weekDayStr = @"三";
+                break;
+            case 4:
+                weekDayStr = @"四";
+                break;
+            case 5:
+                weekDayStr = @"五";
+                break;
+            case 6:
+                weekDayStr = @"六";
+                break;
+                
+            default:
+                break;
+        }
+        self.vipTitleLabel.text = [NSString stringWithFormat:@"周%@好，脚印VIP",weekDayStr];
+        self.vipContentLabel.text = @"会员中心";
+    }else{ //未购买
+        self.vipTitleLabel.text = @"成为脚印VIP";
+        self.vipContentLabel.text = @"享多门会员课与购课优惠";
+    }
+    
+    
     [self createLearnView];
 }
+
 
 - (void)createLearnView{
     
@@ -154,5 +190,26 @@
            self.BlockOperationClick(3);
        }
     
+}
+
+
+
+- (NSInteger)getWeekDayFordate{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+
+    NSDate *now = [NSDate date];
+
+    // 在真机上需要设置区域，才能正确获取本地日期，天朝代码:zh_CN
+    calendar.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+
+    comps = [calendar components:unitFlags fromDate:now];
+
+    return [comps weekday] - 1;
 }
 @end

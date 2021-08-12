@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderInfoFootModel : NSObject
 
+@property (nonatomic, strong) NSString *vip_price_text;
+@property (nonatomic, strong) NSString *vip_text;
+@property (nonatomic, strong) NSString *vip_price;
+@property (nonatomic, strong) NSString *is_discount_vip;
 @property (nonatomic, strong) NSString *banner;
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *discount_price;

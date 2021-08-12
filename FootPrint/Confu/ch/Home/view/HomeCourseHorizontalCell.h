@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CourslModel.h"
-#import "LiveModel.h"
+#import "LearnRecordModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,9 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *dataSource;
 
 
-@property (nonatomic, copy) void (^BlockCourseClick)(CourslModel *model);
+@property (nonatomic, copy) void (^BlockCourseClick)(LearnRecordModel *model);
 //placeholder_property//
-@property (nonatomic, copy) void (^BlockLiveClick)(LiveModel *model);
+@property (nonatomic, copy) void (^BlockLiveClick)(NSDictionary *model);
+@property (nonatomic, copy) void (^BlockLiveClickYuyue)(NSDictionary *model);
+
 
 @end
 

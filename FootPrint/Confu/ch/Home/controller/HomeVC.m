@@ -36,7 +36,12 @@
 #import "SaleModel.h"
 #import "GroupVC.h"
 #import "HomeCourseHorizontalCell.h"
-
+#import "LearnRecordModel.h"
+#import "HomeTipBgView.h"
+#import "HomeHeadFirstCell.h"
+#import "HomeHeadSecondCell.h"
+#import "HomeLiveListVC.h"
+#import "HomeLiveTipTimeLabel.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray<HomelModel *> *dataSource;
@@ -44,11 +49,6 @@
 @property (nonatomic,strong) HomelModel *saleModel;
 
 @property (nonatomic, strong) HomeSearchCell *searchView;
-@property (nonatomic, strong) UIButton *messageBtn;
-
-@property (nonatomic, strong) UIButton *signBtn;
-@property (nonatomic, strong) UIView *redView;
-
 
 
 @end
@@ -73,8 +73,6 @@
             self.additionalHeight = 20.0;
 
     }
-        
-        
         
     }
     
@@ -108,122 +106,30 @@
     
 //    [UIApplication sharedApplication].delegate.window.safeAreaInsets;
     
-    
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self.navigationController.navigationBar addSubview:self.searchView];
-    
-    // home_message
-    [self.navigationController.navigationBar addSubview:self.messageBtn];
 
-    [self.navigationController.navigationBar addSubview:self.signBtn];
-    
-    if (!Ktoken) {
-        self.signBtn.selected = NO;
-    } else {
-       UserModel *user = [APPUserDefault getCurrentUserFromLocal];
-        if (user && [user.is_sign integerValue] == 1) {
-            self.signBtn.selected = YES;
-
-//            [self.signBtn setTitle:@"已签到" forState:UIControlStateNormal];
-        } else {
-            self.signBtn.selected = NO;
-
-//            [self.signBtn setTitle:@"签到" forState:UIControlStateNormal];
-        }
-    }
-   
-   
-    
-//    [b mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.centerY.mas_equalTo(self.searchView);
-//        make.trailing.mas_equalTo(self.searchView).offset(-16);
-//        make.width.mas_equalTo(21.0);
-//        make.height.mas_equalTo(21.0);
-//
-//    }];
-    
-//    self.rightBtn = [UIButton new];
-//    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-//
-//    [self.rightBtn setImage:[UIImage imageNamed:@"mine_sign_n"] forState:UIControlStateNormal];
-//    [self.rightBtn setTitle:@" 签到" forState:UIControlStateNormal];
-//    [self.rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//
-//    [self.rightBtn addTarget:self action:@selector(SignClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [view addSubview:self.rightBtn];
-//
-//    [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.centerY.mas_equalTo(view).offset(offset);
-//        make.trailing.mas_equalTo(view).offset(-16);
-//    }];
-    
-    
-    [self judgeMessageReadStatus];
-
-    
     
     // 审核status
     if (![isAudit isEqualToString:@"no"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_CheckStateChange object:nil];
 
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
+//    if (self.dataSource && self.dataSource.count > 0) {
+//        [self hideEmptyView];
+//    }
 }
-
-- (void)judgeMessageReadStatus {
-    if (!Ktoken) {
-        _messageBtn.selected = NO;
-//        _redView.hidden = YES;
-            return;
-    }
-         WS(weakself)
-    [APPRequest GET:@"/user/message" parameters:@{@"type":@"2"} finished:^(AjaxResult *result) {
-             
-             if (result.code == AjaxResultStateSuccess) {
-                 
-                 NSArray *arr = [ShopMessageModel mj_objectArrayWithKeyValuesArray:result.data[@"list"]];
-                 bool unread = false;
-                 for (ShopMessageModel *model in arr) {
-                     if ([model.isread intValue] == 0 ) {
-                         unread = true;
-                         break;
-                     }
-                 }
-                 if (unread) {
-                     _messageBtn.selected = YES;
-//                     weakself.redView.hidden = NO;
-                 } else {
-                     _messageBtn.selected = NO;
-
-//                     weakself.redView.hidden = YES;
-
-                 }
-                 
-                 
-             }
-         }];
-     
-
-}
-
-
-
-
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.searchView removeFromSuperview];
-    [self.messageBtn removeFromSuperview];
-    [self.signBtn removeFromSuperview];
-
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -248,7 +154,10 @@
 //        return 0;
 //    }
     
-    if (type == 3) { //课程
+    if (type == -1 || type == -2){
+        
+        return 1;
+    }else if (type == 3) { //课程
         
         if ([model.show_type integerValue] == 1) {  // 列表
             
@@ -273,8 +182,10 @@
     HomelModel *model = self.dataSource[indexPath.section];
     NSInteger type = [model.type integerValue];
     
-        if (type == -1) { //banner
-            return 100;
+        if (type == -1) {
+            return 88;
+        }else if (type == -2) {
+            return 120;//140 2行
         }else if (type == 1) { //banner
             return SCREEN_WIDTH*140/345.0;
         }else if (type == 2){ //搜索
@@ -321,10 +232,10 @@
             
             return line*(height+10);
         } else if (type == 10) {
-            NSInteger line = ceil(model.content.count/5.0);
-            CGFloat width = (375.0 / SCREEN_WIDTH) * 34;
-            
-            return line * (32 + width) + 17;
+//            NSInteger line = ceil(model.content.count/5.0);
+//            CGFloat width = (375.0 / SCREEN_WIDTH) * 34;
+//
+//            return line * (32 + width) + 17;
         } else if (type == 11) {
             if (model.content.count > 0) {
               NSArray *arr =  model.content;
@@ -341,10 +252,10 @@
                 
                 return  h + 52.0 + 20.0 + 16.0 + 2.5 + 6;
             }
-            return 0;
+            return 0.01;
         }
     
-    return 0;
+    return 0.01;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -352,7 +263,7 @@
     HomelModel *model = self.dataSource[section];
     NSInteger type = [model.type integerValue];
     
-    if (type == 3 || type == 6 || type == 7) {
+    if (type == -1 || type == -2 || type == 3 || type == 6 || type == 7) {
         
         return 57;
     }
@@ -377,7 +288,11 @@
             make.leading.mas_equalTo(19.0);//43
             make.centerY.mas_equalTo(view);
         }];
+        if ([model.type intValue] == -2) {
+            title.text = @"最近在学";
+        }
     }else{
+        title.text = @"直播";
         [title mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.leading.mas_equalTo(43.0);//43
@@ -438,7 +353,19 @@
                 [weakself.navigationController pushViewController:next animated:YES];
                 
             } else {
-                if ([model.type integerValue] == 3) { //课程列表
+                
+                
+                if ([model.type integerValue] == -1) { //直播预告
+                    
+                    HomeLiveListVC *next = [[HomeLiveListVC alloc] init];
+                    [self.navigationController pushViewController:next animated:YES];
+
+                }else if ([model.type integerValue] == -2) { //学习记录
+                    
+                    LearnRecordVC *next = [[LearnRecordVC alloc] init];
+                    [self.navigationController pushViewController:next animated:YES];
+
+                }else if ([model.type integerValue] == 3) { //课程列表
                     
                     CourseVC *next = [[CourseVC alloc] init];
                     next.isList = YES;
@@ -472,15 +399,31 @@
     if (type == -1) {
         
         HomeCourseHorizontalCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"HomeCourseHorizontalCell"];
-        cell.type = 2;
+        cell.type = 3;
         cell.selectionStyle = UITableViewCellSeparatorStyleNone;
-//        cell.dataSource = model.content;
-//        cell.BlockLiveClick = ^(LiveModel * _Nonnull model) {
-//
-//            LiveDetaileVC *next = [[LiveDetaileVC alloc] init];
-//            next.liveId = model.id;
-//            [self.navigationController pushViewController:next animated:YES];
-//        };
+        cell.dataSource = model.list;
+        cell.BlockLiveClick = ^(NSDictionary * _Nonnull model) {
+            [self showHomeTipBgViewDetial:model];
+        };
+        cell.BlockLiveClickYuyue = ^(NSDictionary * _Nonnull model) {
+            [self showHomeTipBgViewYuyueSuccess:model];
+        };
+        return cell;
+    }else if (type == -2) {
+        
+        HomeCourseHorizontalCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"HomeCourseHorizontalCell"];
+        cell.type = 4;
+        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+        cell.dataSource = model.list;
+        cell.BlockCourseClick = ^(LearnRecordModel * _Nonnull model) {
+
+            CourseDetailVC *next = [[CourseDetailVC alloc] init];
+            
+            next.goodsType = [model.goods_type integerValue];
+            next.courseId = model.cid;
+//            next.is_buy = model.is_buy;
+            [self.navigationController pushViewController:next animated:YES];
+        };
         return cell;
     }else if (type == 1) { //banner
             
@@ -592,27 +535,27 @@
             };
 
             return cell;
-        } else if (type == 10) {
-            PictureAndTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PictureAndTextCell"];
-           if (!cell) {
-               
-               cell = [[PictureAndTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PictureAndTextCell" withDirection:1];
-             
-           }
-           cell.backgroundColor = [UIColor whiteColor];
-           cell.selectionStyle = UITableViewCellSeparatorStyleNone;
-           
-           cell.dataSource = model.content;
-               cell.BlockClick = ^(HomeBannelModel *model) {
-                   [weakself goingToTheControllerWith:model];
-               };
-//           cell.BlockPackageClick = ^(PictureAndTextChildModel * _Nonnull model) {
+        } else if (type == 10) {//轮播图下icon入口
+//            PictureAndTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PictureAndTextCell"];
+//           if (!cell) {
 //
-//               [weakself goingToOtherController:model];
+//               cell = [[PictureAndTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PictureAndTextCell" withDirection:1];
 //
-//           };
-         
-           return cell;
+//           }
+//           cell.backgroundColor = [UIColor whiteColor];
+//           cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+//
+//           cell.dataSource = model.content;
+//               cell.BlockClick = ^(HomeBannelModel *model) {
+//                   [weakself goingToTheControllerWith:model];
+//               };
+////           cell.BlockPackageClick = ^(PictureAndTextChildModel * _Nonnull model) {
+////
+////               [weakself goingToOtherController:model];
+////
+////           };
+//
+//           return cell;
         } else if (type == 11) {
             SaleSuperCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SaleSuperCell"];
             cell.content = self.saleModel.content;
@@ -734,6 +677,126 @@
     }
 }
 
+- (void)showHomeTipBgViewYuyueSuccess:(NSDictionary *)model{
+    ///liveos/api/ykapp/front/livePrepare/info
+    
+    HomeTipBgView *_tipView1 = [[HomeTipBgView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [[UIApplication sharedApplication].keyWindow addSubview:_tipView1];
+
+    UIView *showView = [[UIView alloc]init];
+    [_tipView1.allBgView addSubview:showView];
+    [_tipView1.allBgView sendSubviewToBack:showView];
+    
+    UIImageView *topImageView = [[UIImageView alloc]init];
+    [showView addSubview:topImageView];
+    topImageView.image = [UIImage imageNamed:@"home_tip_top"];
+    [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.top.trailing.equalTo(showView);
+    }];
+    UILabel *titleLabel = [[UILabel alloc]init];
+    [showView addSubview:titleLabel];
+    titleLabel.textColor = UIColorFromRGB(0x333333);
+    titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(showView);
+        make.top.equalTo(topImageView.mas_bottom).offset(10);
+    }];
+    UILabel *contentLabel = [[UILabel alloc]init];
+    [showView addSubview:contentLabel];
+    contentLabel.textColor = UIColorFromRGB(0x999999);
+    contentLabel.font = [UIFont systemFontOfSize:14];
+    contentLabel.textAlignment = NSTextAlignmentCenter;
+    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(showView);
+        make.top.equalTo(titleLabel.mas_bottom).offset(10);
+    }];
+    HomeLiveTipTimeLabel *timeLabel = [[NSBundle mainBundle] loadNibNamed:@"HomeLiveTipTimeLabel" owner:self options:nil].firstObject;
+    [showView addSubview:timeLabel];
+    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(showView);
+        make.top.equalTo(contentLabel.mas_bottom).offset(33);
+    }];
+    
+    titleLabel.text = @"预约成功!";
+    contentLabel.text = @"开播前我们将会通过APP推送通知您观看直播";
+//    timeLabel.text = @"开播倒计时 134 时 21 分";
+    
+    HomeHeadFirstCell *bottomCell = [[NSBundle mainBundle] loadNibNamed:@"HomeHeadFirstCell" owner:self options:nil].firstObject;
+    [showView addSubview:bottomCell];
+    bottomCell.sureButton.hidden = YES;
+    bottomCell.model =  model;
+    [bottomCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(showView);
+        make.height.mas_equalTo(88);
+        make.top.equalTo(timeLabel.mas_bottom).offset(70);
+        make.bottom.equalTo(showView.mas_bottom).offset(-1);
+    }];
+    
+    [showView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(_tipView1.allBgView);
+        make.top.equalTo(_tipView1.allBgView).offset(0);
+        make.bottom.equalTo(_tipView1.allBgView).offset(-85);
+//        make.height.mas_equalTo(400);
+    }];
+}
+- (void)showHomeTipBgViewDetial:(NSDictionary *)model{
+    ///liveos/api/ykapp/front/livePrepare/info
+//    WS(weakself)
+//    [APPRequest GET:[NSString stringWithFormat:@"%@%@",HOST_ACTION2,@"/liveos/api/ykapp/front/livePrepare/info"] parameters:@{
+//                @"liveCode": [NSString stringWithFormat:@"%@",model[@"liveCode"]]
+//            } finished:^(AjaxResult *result) {
+//
+//        NSLog(@"result.data %@",result.data);
+//        if (result.code == AjaxResultStateSuccess) {
+//
+//        }
+//    }];
+//    [TalkfunHttpTools liveGet:[NSString stringWithFormat:@"%@%@",HOST_ACTION2,@"/liveos/api/ykapp/front/livePrepare/info"] params:@{
+//        @"liveCode": [NSString stringWithFormat:@"%@",model[@"liveCode"]]
+//    } callback:^(id result) {
+//        NSLog(@"result.data %@",result[@"result"]);
+//
+//        if ([result[@"code"] intValue] == 200) {
+//
+//        }
+//    }];
+    
+    HomeTipBgView *_tipView1 = [[HomeTipBgView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [[UIApplication sharedApplication].keyWindow addSubview:_tipView1];
+
+    UIView *showView = [[UIView alloc]init];
+    [_tipView1.allBgView addSubview:showView];
+    [_tipView1.allBgView sendSubviewToBack:showView];
+    
+    HomeLiveTipTimeLabel *timeLabel = [[NSBundle mainBundle] loadNibNamed:@"HomeLiveTipTimeLabel" owner:self options:nil].firstObject;
+    [showView addSubview:timeLabel];
+    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.top.equalTo(showView);
+    }];
+//    timeLabel.text = @"开播倒计时 134 时 21 分";
+    
+    HomeHeadSecondCell *bottomCell = [[NSBundle mainBundle] loadNibNamed:@"HomeHeadSecondCell" owner:self options:nil].firstObject;
+    bottomCell.coverImageView.layer.cornerRadius = 10;
+    bottomCell.imageBottom.constant = 90;
+    [showView addSubview:bottomCell];
+    bottomCell.titleLabel.text = [NSString stringWithFormat:@"%@",model[@"title"]];
+    [bottomCell.coverImageView sd_setImageWithURL:model[@"liveUrl"] placeholderImage:[UIImage imageNamed:@"mydefault"]];
+    [bottomCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(showView).offset(12);
+        make.trailing.equalTo(showView).offset(-12);
+        make.bottom.equalTo(showView).offset(-1);
+        make.height.mas_equalTo(260);
+    }];
+    
+    [showView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(_tipView1.allBgView);
+        make.top.equalTo(_tipView1.allBgView).offset(43);
+        make.bottom.equalTo(_tipView1.allBgView).offset(-85);
+        make.height.mas_equalTo(340);
+    }];
+}
+
 #pragma mark 自定义代理
 
 #pragma mark - 事件
@@ -777,7 +840,7 @@
             [weakself.tableView reloadData];
         }
         
-        
+        [weakself liveListRequest];
 
        
         if (self.dataSource && self.dataSource.count > 0) {
@@ -791,12 +854,10 @@
 //        [self.tableView.mj_header endRefreshing];
         if (result.code == AjaxResultStateSuccess) {
 
-       
              
-            NSMutableArray *mutableArr = [NSMutableArray array];
-            self.dataSource = mutableArr;
-            
-            [self.tableView reloadData];
+//            NSMutableArray *mutableArr = [NSMutableArray array];
+//            self.dataSource = mutableArr;
+//            [self.tableView reloadData];
             
             HomelModel *model = [[HomelModel alloc] init];
             NSArray *content = [CourslModel mj_objectArrayWithKeyValuesArray:result.data];
@@ -805,7 +866,7 @@
             model.type = @"11"; // 限时优惠
             weakself.saleModel = model;
             if (weakself.dataSource.count > 0) {
-                if (weakself.dataSource.count > 2) {
+                if (weakself.dataSource.count > 4) {
                     [weakself.dataSource insertObject:model atIndex:3];
                 } else {
                     [weakself.dataSource insertObject:model atIndex:weakself.dataSource.count];
@@ -820,48 +881,82 @@
         }
         
     }];
-    
-    [APPRequest GET:[NSString stringWithFormat:@"%@%@",HOST_ACTION2,@"/liveos/api/ykapp/front/livePrepare/page"] parameters:nil finished:^(AjaxResult *result) {
-        NSLog(@"result.data %@",result.data);
-        HomelModel *model = [[HomelModel alloc] init];
-        model.type = @"-1";
-        model.list = @[@"",@"",@""];
-        if (weakself.dataSource.count>2) {
-            [weakself.dataSource insertObject:model atIndex:1];
-        }else{
-            [weakself.dataSource addObject:model];
-        }
-        
-        
-        [self.tableView.mj_header endRefreshing];
-        if (result.code == AjaxResultStateSuccess) {
-//            NSArray *array = [HomelModel mj_objectArrayWithKeyValuesArray:result.data[@"list"]];
-//            NSMutableArray *mutableArr = array.mutableCopy;
-//            if (weakself.saleModel) {
-//                if (mutableArr.count > 0) {
-//                    if (mutableArr.count > 2) {
-//                        [mutableArr insertObject:weakself.saleModel atIndex:3];
-//                    } else {
-//                        [mutableArr insertObject:weakself.saleModel atIndex:weakself.dataSource.count];
-//                    }
-//                } else {
-//                    mutableArr = [NSMutableArray arrayWithObject:weakself.saleModel];
-//                }
-//            }
-//            weakself.dataSource = mutableArr;
-//
-//
-//            [weakself.tableView reloadData];
-        }
-//        if (self.dataSource && self.dataSource.count > 0) {
-//            [self performSelector:@selector(hideEmptyView) withObject:nil afterDelay:1];
-//        }
-    }];
-
 }
 
+- (void)liveListRequest{
+    WS(weakself)
+    [TalkfunHttpTools livePost:[NSString stringWithFormat:@"%@%@",HOST_ACTION2,@"/liveos/api/ykapp/front/livePrepare/page"] params:@{
+        @"pageNumber": @10,
+        @"pageSize": @1,
+        @"queryKey": @""
+    } callback:^(id result) {
+        NSLog(@"result.data %@",result[@"result"]);
 
-
+        if ([result[@"code"] intValue] == 200) {
+            
+            NSArray *list = result[@"result"][@"list"];
+            HomelModel *model = [[HomelModel alloc] init];
+            model.type = @"-1";
+            model.show_more = @"1";
+            model.list = list;
+          
+            for (int i = 0; i<weakself.dataSource.count; i++) {
+                HomelModel *temp =  weakself.dataSource[i];
+                if ([temp.type intValue] == 1) {//插到轮播图后面
+                    if (weakself.dataSource.count > i+1) {
+                        HomelModel *temptemp =  weakself.dataSource[i+1];
+                        if ([temptemp.type intValue] != -1) {
+                            [weakself.dataSource insertObject:model atIndex:i+1];
+                            [weakself.tableView reloadData];
+                            return;
+                        }
+                    }
+                }
+            }
+            [weakself.dataSource addObject:model];
+            [weakself.tableView reloadData];
+        }
+    }];
+    
+    [APPRequest GET:@"/studyList/recordList" parameters:nil finished:^(AjaxResult *result) {
+        
+        if (result.code == AjaxResultStateSuccess) {
+            
+            NSArray *tempArray = [LearnRecordModel mj_objectArrayWithKeyValuesArray:result.data[@"list"]];
+            
+            if (self.dataSource.count == 0) {
+            }else{
+                HomelModel *model = [[HomelModel alloc] init];
+                model.type = @"-2";
+                model.show_more = @"1";
+                model.list = tempArray;
+              
+                for (int i = 0; i<weakself.dataSource.count; i++) {
+                    HomelModel *temp =  weakself.dataSource[i];
+                    if ([temp.type intValue] == -1) {
+                        if (weakself.dataSource.count > i+1) {
+                            [weakself.dataSource insertObject:model atIndex:i+1];
+                            [weakself.tableView reloadData];
+                            return;
+                        }
+                    }
+                }
+                for (int i = 0; i<weakself.dataSource.count; i++) {
+                    HomelModel *temp =  weakself.dataSource[i];
+                    if ([temp.type intValue] == 1) {//插到轮播图后面
+                        if (weakself.dataSource.count > i+1) {
+                            [weakself.dataSource insertObject:model atIndex:i+1];
+                            [weakself.tableView reloadData];
+                            return;
+                        }
+                    }
+                }
+                [weakself.dataSource addObject:model];
+                [weakself.tableView reloadData];
+            }
+        }
+    }];
+}
 
 
 #pragma mark - 私有方法
@@ -888,92 +983,6 @@
         }
 
         return _searchView;
-    }
-
-- (UIButton *)messageBtn {
-    if (_messageBtn == nil) {
-       _messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 103.0, 10, 24.0, 24.0)];
-    //    b.backgroundColor = [UIColor yellowColor];
-        [_messageBtn setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
-        [_messageBtn setImage:[UIImage imageNamed:@"home_message_gray"] forState:UIControlStateSelected];
-
-//        UIView *v = [[UIView alloc] initWithFrame:CGRectMake(12.8, 3.3, 8, 8)];
-//        v.layer.cornerRadius = 4.0;
-////        v.hidden = YES;
-//        self.redView = v;
-//        v.backgroundColor = [UIColor colorWithHex:0xFF5656];
-//        [_messageBtn addSubview:v];
-            [_messageBtn addTarget:self action:@selector(messageclickAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _messageBtn;
-}
-- (UIButton *)signBtn {
-    if (_signBtn== nil) {
-        _signBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 68, 10, 58, 24.0)];
-    //    b.backgroundColor = [UIColor yellowColor];
-        
-        [_signBtn setImage:[UIImage imageNamed:@"home_sign"] forState:UIControlStateNormal];
-        [_signBtn setImage:[UIImage imageNamed:@"home_sign_gray"] forState:UIControlStateSelected];
-
-        _signBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        [_signBtn setTitleColor:[UIColor colorWithHex:0x323233] forState:UIControlStateNormal];
-//        [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
-        [_signBtn addTarget:self action:@selector(SignClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return   _signBtn;
 }
 
-
-- (void)messageclickAction:(UIButton *)b {
-    if (!Ktoken) {
-           [self loginAction];
-           return;
-       }
-    ShopMessageVC *next = [[ShopMessageVC alloc] init];
-                   [self.navigationController pushViewController:next animated:YES];
-
-
-  
-}
-- (void)SignClick:(UIButton *)b {
-//    PLPlayerViewController *vc = [[PLPlayerViewController alloc] initWithURL:[NSURL URLWithString:@"https://20200901164030.grazy.cn/oa_0ec879b7aea9e60ee22d36c0411a3d2f.mp3"]];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;
-    
-    
-    
-    
-    
-    if (!Ktoken) {
-           [self loginAction];
-           return;
-       }
-//   NSString *title = [b titleForState:UIControlStateNormal];
-    if (!b.selected) {
-//        if ([self.model.is_sign integerValue] == 1) { //已签到
-//
-//            [self.view showTip:@"已签到"];
-//            return;
-//        }
-        //placeholder_method_call//
-        WS(weakself)
-        [APPRequest GET:@"/sign" parameters:nil finished:^(AjaxResult *result) {
-            
-            if (result.code == AjaxResultStateSuccess) {
-            
-                weakself.signBtn.selected = YES;
-
-                [KeyWindow showTip:result.data[@"msg"]];
-                UserModel *user = [APPUserDefault getCurrentUserFromLocal];
-                user.is_sign = @"1";
-                [APPUserDefault saveUserToLocal:user];
-            }
-        }];
-    }
-   
-
-  
-}
-//placeholder_method_impl//
-//placeholder_method_impl//
 @end

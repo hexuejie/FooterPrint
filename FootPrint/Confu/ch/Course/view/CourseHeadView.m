@@ -52,6 +52,19 @@
 //
 //    self.label1.attributedText = string;
     
+    CAShapeLayer *shapeLayer2 = [CAShapeLayer layer];
+    shapeLayer2.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 40, 16) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)].CGPath;
+    _vipTipLabel.layer.mask = shapeLayer2;
+    
+    self.cardButton.backgroundColor = [UIColor clearColor];
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)UIColorFromRGB(0x6BB6D1).CGColor, (__bridge id)UIColorFromRGB(0x8882CC).CGColor];
+    gradientLayer.locations = @[@0.0, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1.0, 0);
+    gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH-30, 49);
+    [self.cardButton.layer addSublayer:gradientLayer];
 }
 - (void)goingToTogetcher {
     if (self.BlokGroupDetailClick) {
@@ -421,8 +434,6 @@
         self.topImgView.hidden = NO;
         [self.topImgView sd_setImageWithURL:APP_IMG(self.model.banner) placeholderImage:[UIImage imageNamed:@"mydefault"]];
     }
-       
-
     
     
     self.btnDownLoad.hidden = NO;
@@ -551,6 +562,26 @@
             
         }
         }
+    
+    if ([_model.is_discount_vip intValue]) {
+        NSString *vip_priceStr;
+        CGFloat vip_price = _model.vip_price.floatValue;
+        if (vip_price == 0) {
+            vip_priceStr = @"免费";
+        }else if (vip_price > 0) {
+            vip_priceStr = [NSString stringWithFormat:@"¥%.2f",vip_price];
+        }
+        self.vipPriceLabel.text = vip_priceStr;
+        
+        CGFloat width1 = [vip_priceStr boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 11) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size.width;
+        self.vipBgWifht.constant = 48+width1;
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 48+width1, 16) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)].CGPath;
+        _vipBgview.layer.mask = shapeLayer;//8
+        _vipBgview.hidden = NO;
+    }else{
+        _vipBgview.hidden = YES;
+    }
         
 }
 

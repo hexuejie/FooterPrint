@@ -136,6 +136,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vipBgWifht;
+@property (weak, nonatomic) IBOutlet UIView *vipBgview;
+@property (weak, nonatomic) IBOutlet UILabel *vipTipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vipPriceLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLineHeight;//6   60
+@property (weak, nonatomic) IBOutlet UIButton *cardButton;
 
 
 @end

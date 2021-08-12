@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeHeadSecondCell">
+            <rect key="frame" x="0.0" y="0.0" width="279" height="197"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="279" height="197"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bdk-pW-Iza">
+                        <rect key="frame" x="30" y="1" width="170" height="195"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="知乎营销课程全网营销课知乎营销课程全网营销课知乎营销课程全网营销课" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLo-3I-h4S">
+                                <rect key="frame" x="7" y="154" width="505" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D5J-vG-FU5">
+                                <rect key="frame" x="1" y="0.0" width="267" height="165"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="D5J-vG-FU5" secondAttribute="bottom" constant="30" id="CjH-Gm-HG3"/>
+                            <constraint firstItem="D5J-vG-FU5" firstAttribute="top" secondItem="Bdk-pW-Iza" secondAttribute="top" id="YAL-w8-k75"/>
+                            <constraint firstItem="FLo-3I-h4S" firstAttribute="leading" secondItem="Bdk-pW-Iza" secondAttribute="leading" constant="1" id="ZQM-1L-maf"/>
+                            <constraint firstAttribute="trailing" secondItem="FLo-3I-h4S" secondAttribute="trailing" constant="1" id="jf4-ao-Bth"/>
+                            <constraint firstItem="FLo-3I-h4S" firstAttribute="top" secondItem="D5J-vG-FU5" secondAttribute="bottom" constant="8" id="pQh-FN-5bd"/>
+                            <constraint firstAttribute="trailing" secondItem="D5J-vG-FU5" secondAttribute="trailing" constant="1" id="tF2-Eb-MJ7"/>
+                            <constraint firstItem="D5J-vG-FU5" firstAttribute="leading" secondItem="Bdk-pW-Iza" secondAttribute="leading" constant="1" id="yqi-Wj-inh"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Bdk-pW-Iza" secondAttribute="bottom" constant="1" id="9sn-Dy-tWx"/>
+                <constraint firstItem="Bdk-pW-Iza" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="SHN-HE-7xb"/>
+                <constraint firstItem="Bdk-pW-Iza" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="ZTm-wh-pfG"/>
+                <constraint firstAttribute="trailing" secondItem="Bdk-pW-Iza" secondAttribute="trailing" constant="5" id="zIH-Zb-TVX"/>
+            </constraints>
+            <size key="customSize" width="279" height="197"/>
+            <connections>
+                <outlet property="coverImageView" destination="D5J-vG-FU5" id="HUF-Ne-hyV"/>
+                <outlet property="imageBottom" destination="CjH-Gm-HG3" id="ZjI-yw-Fer"/>
+                <outlet property="titleLabel" destination="FLo-3I-h4S" id="B2r-Xn-sXz"/>
+            </connections>
+            <point key="canvasLocation" x="303.62318840579712" y="134.26339285714286"/>
+        </collectionViewCell>
+    </objects>
+</document>

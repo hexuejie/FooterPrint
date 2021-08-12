@@ -90,6 +90,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *csLblInterfralHeight;
 @property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *discountTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *disContentLabel;//479297  14 不是会员
+@property (weak, nonatomic) IBOutlet UIView *discountBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *csDiscountBgViewHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

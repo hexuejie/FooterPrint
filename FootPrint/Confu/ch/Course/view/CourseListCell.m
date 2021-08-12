@@ -17,6 +17,12 @@
     self.imgBgView.layer.cornerRadius = 10.0;
     self.imgBgView.clipsToBounds = YES;
     
+    CAShapeLayer *shapeLayer2 = [CAShapeLayer layer];
+    shapeLayer2.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 30, 16) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)].CGPath;
+    _vipTipLabel.layer.mask = shapeLayer2;
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 80, 16) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)].CGPath;
+    _vipBgView.layer.mask = shapeLayer;//8
 }
 - (UIImage *)imageWithColor:(UIColor *)color andUIImageage:(UIImage *)img {
     UIGraphicsBeginImageContextWithOptions(img.size, NO, img.scale);
@@ -59,6 +65,19 @@
     self.lblPrice.text = courseModel.price;
    
      
+    if (_courseModel.vip_price_text != nil && _courseModel.vip_price_text.length>0) {
+        self.vipPriceLabel.text = _courseModel.vip_price_text;
+        
+        CGFloat width1 = [_courseModel.vip_price_text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 11) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size.width;
+        self.vipBgWidth.constant = 37+width1;
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 37+width1, 16) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)].CGPath;
+        _vipBgView.layer.mask = shapeLayer;//8
+        _vipBgView.hidden = NO;
+    }else{
+        _vipBgView.hidden = YES;
+    }
+    
 
     if (courseModel.is_group == 1) { // 拼团
         self.groupIconImgView.hidden = NO;
@@ -141,8 +160,6 @@
         self.imgType.image = [UIImage imageNamed:@"course_mp3"];
     }
     
-    
-    
-    
+
 }
 @end

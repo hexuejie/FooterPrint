@@ -36,24 +36,4 @@
 
 
 
-//
-//// 是否支持自动转屏
-//- (BOOL)shouldAutorotate
-//{
-//    if ([self.visibleViewController isKindOfClass:[NSClassFromString(@"PlayVideoVC") class]]) {
-//
-//        return YES;
-//    }
-//    return NO;
-//}
-//// 支持哪些屏幕方向
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-//{
-//    if ([self.visibleViewController isKindOfClass:[NSClassFromString(@"PlayVideoVC") class]]) {
-//
-//        return UIInterfaceOrientationMaskAllButUpsideDown;
-//    }
-//    return UIInterfaceOrientationMaskPortrait;
-//}
-
 @end

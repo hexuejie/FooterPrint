@@ -5,11 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "icon_course_n@2x.png",
+      "filename" : "课程@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "课程@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

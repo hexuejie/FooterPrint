@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -176,6 +176,39 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxB-13-VzE">
+                                <rect key="frame" x="135" y="95" width="80" height="16"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpZ-i9-4ti">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="16"/>
+                                        <color key="backgroundColor" red="0.90196078431372551" green="0.71372549019607845" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="29" id="aga-dL-kV9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.32549019607843138" green="0.13725490196078433" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立减300" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evr-eB-Uhg">
+                                        <rect key="frame" x="30" y="0.0" width="49" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.5725490196078431" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Evr-eB-Uhg" secondAttribute="bottom" id="B5J-yT-Ukl"/>
+                                    <constraint firstAttribute="bottom" secondItem="QpZ-i9-4ti" secondAttribute="bottom" id="HXH-oD-3UJ"/>
+                                    <constraint firstItem="Evr-eB-Uhg" firstAttribute="top" secondItem="zxB-13-VzE" secondAttribute="top" id="IC0-xP-rkf"/>
+                                    <constraint firstAttribute="height" constant="16" id="JoZ-lL-COZ"/>
+                                    <constraint firstAttribute="width" constant="80" id="KKv-SC-Pdy"/>
+                                    <constraint firstItem="QpZ-i9-4ti" firstAttribute="top" secondItem="zxB-13-VzE" secondAttribute="top" id="Ka7-ns-LHt"/>
+                                    <constraint firstItem="QpZ-i9-4ti" firstAttribute="leading" secondItem="zxB-13-VzE" secondAttribute="leading" id="O3Z-Uy-VwZ"/>
+                                    <constraint firstItem="Evr-eB-Uhg" firstAttribute="leading" secondItem="QpZ-i9-4ti" secondAttribute="trailing" constant="1" id="P2a-qI-mSL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Evr-eB-Uhg" secondAttribute="trailing" constant="1" id="iI7-ya-Yfw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -183,10 +216,12 @@
                             <constraint firstItem="raq-rH-TxD" firstAttribute="leading" secondItem="8Rs-Sf-M1u" secondAttribute="trailing" constant="14" id="6I2-rG-pWC"/>
                             <constraint firstItem="8xL-tu-8y6" firstAttribute="centerY" secondItem="raq-rH-TxD" secondAttribute="centerY" id="7H9-Rn-mY6"/>
                             <constraint firstItem="qfW-AX-NyE" firstAttribute="leading" secondItem="T8S-sq-ddR" secondAttribute="leading" constant="16" id="9pP-KV-h2W"/>
+                            <constraint firstItem="zxB-13-VzE" firstAttribute="leading" secondItem="8xL-tu-8y6" secondAttribute="trailing" constant="11" id="A1k-EY-RPX"/>
                             <constraint firstItem="8xL-tu-8y6" firstAttribute="leading" secondItem="raq-rH-TxD" secondAttribute="trailing" constant="2" id="Bw6-Ia-HbG"/>
                             <constraint firstItem="bd8-U0-r2k" firstAttribute="leading" secondItem="Da2-O1-22E" secondAttribute="trailing" constant="10" id="Gi8-Ah-SfB"/>
                             <constraint firstAttribute="trailing" secondItem="Ub0-Cz-3Fd" secondAttribute="trailing" constant="18" id="J0h-24-Bf2"/>
                             <constraint firstItem="8xL-tu-8y6" firstAttribute="baseline" secondItem="qZ6-hd-ZgU" secondAttribute="baseline" id="KKG-Pi-lJJ"/>
+                            <constraint firstItem="oXB-u1-09E" firstAttribute="centerY" secondItem="zxB-13-VzE" secondAttribute="centerY" id="Pfe-nL-I9d"/>
                             <constraint firstItem="bd8-U0-r2k" firstAttribute="top" secondItem="Da2-O1-22E" secondAttribute="top" id="QqT-MT-1TL"/>
                             <constraint firstItem="oXB-u1-09E" firstAttribute="centerY" secondItem="8xL-tu-8y6" secondAttribute="centerY" id="S3L-7x-85p"/>
                             <constraint firstItem="8Rs-Sf-M1u" firstAttribute="leading" secondItem="qfW-AX-NyE" secondAttribute="trailing" constant="2" id="SaL-E8-0dm"/>
@@ -232,8 +267,12 @@
                 <outlet property="statusLabel" destination="lyl-g3-7UV" id="cws-S8-eR4"/>
                 <outlet property="studyBtn" destination="qZ6-hd-ZgU" id="Z5Q-Oa-pWp"/>
                 <outlet property="topLineView" destination="LkM-DG-xMo" id="apf-Ol-c0G"/>
+                <outlet property="vipBgView" destination="zxB-13-VzE" id="Wo5-DS-4fi"/>
+                <outlet property="vipBgWidth" destination="KKv-SC-Pdy" id="EM4-RZ-Dxd"/>
+                <outlet property="vipPriceLabel" destination="Evr-eB-Uhg" id="gEQ-AJ-0aU"/>
+                <outlet property="vipTipLabel" destination="QpZ-i9-4ti" id="aeD-Ss-Dyg"/>
             </connections>
-            <point key="canvasLocation" x="-111.59420289855073" y="87.388392857142847"/>
+            <point key="canvasLocation" x="-220.28985507246378" y="-11.049107142857142"/>
         </tableViewCell>
     </objects>
     <resources>

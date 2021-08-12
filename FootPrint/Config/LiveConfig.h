@@ -41,6 +41,7 @@
 #define ToastPosition CGPointMake(ScreenSize.width/2.0, ScreenSize.height/2.0 * 0.8)
 #define HeightRatio [UIScreen mainScreen].bounds.size.height / 667
 #define WidthRatio [UIScreen mainScreen].bounds.size.width / 320
+#define WidthRatio2 [UIScreen mainScreen].bounds.size.width / 375
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 #define MSTT_CB_C [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1]

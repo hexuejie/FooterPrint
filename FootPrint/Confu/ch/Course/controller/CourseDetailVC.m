@@ -31,6 +31,7 @@
 #import "TogetcherVC.h"
 #import "UILabel+Attribute.h"
 #import "TogetcherModel.h"
+#import "CourseCardDownViewController.h"
 @interface CourseDetailVC ()<CourseHeadViewCellDelegate,WMPageControllerDelegate,WMPageControllerDataSource>
 
 @property (strong, nonatomic) NSMutableArray *titleAry;
@@ -539,7 +540,7 @@ WS(weakself)
 //            }
           
         
-            
+            NSLog(@"result.data %@",result.data);
             weakself.views = [NSMutableArray array];
             if ([weakself.model.checkbuy intValue] == 1) {
                 [weakself addChildSouse];
@@ -551,10 +552,23 @@ WS(weakself)
                 weakself.titleAry = [NSMutableArray arrayWithObjects:@"详情",@"目录",nil];
 
             }
+            if (self.model.card_chart && self.model.card_chart.length>0) {
+                self.headView.bottomLineHeight.constant = 60;
+                self.headView.cardButton.hidden = NO;
+                
+                if ([self.model.checkbuy integerValue] == 1) { //已购买
+                    [self.headView.cardButton setTitle:@"点击查看知识卡片" forState:UIControlStateNormal];
+                }else{
+                    [self.headView.cardButton setTitle:@"此课程有知识卡片，购课后可直接下载" forState:UIControlStateNormal];
+                }
+            }else{
+                self.headView.cardButton.hidden = YES;
+                self.headView.bottomLineHeight.constant = 6;
+            }
             [weakself.pageController reloadData];
             
             
-
+            
             
             //创建下载唯一id
             if ([self.model.goods_type integerValue] == 1) { //视频
@@ -727,6 +741,113 @@ WS(weakself)
     }
 }
 
+- (void)cardButtonClick{
+    if ([self.model.checkbuy integerValue] == 1) { //已购买
+        CourseCardDownViewController *vc = [CourseCardDownViewController new];
+        vc.picURL = self.model.card_chart;
+        vc.title = [NSString stringWithFormat:@"知识卡片《%@》",self.title];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    [self buyThisCourse];
+}
+
+- (void)buyThisCourse{
+    if (!Ktoken) {
+        [self loginAction];
+        return;
+    }
+    
+    CourseDetailVC *weakself = self;
+    if ([self.model.audit integerValue] == 0) { //已下架
+        
+        [KeyWindow showTip:@"该课程已下架"];
+        return ;
+    }else{
+        //    是否购买,如果是VIP默认购买状态
+        if ([self.model.checkbuy integerValue] == 1) { //已购买  播
+          
+            if (self.goodsType == 1) { //视频
+                if (self.app.playerView.player.status != PLPlayerStatusPlaying) {
+                    [weakself.headView beginPlayVideo];
+                } else {
+                    if (self.headView.topImgView.hidden == NO) {
+                        [weakself.headView beginPlayVideo];
+
+                    }
+                }
+                if (weakself.model.chapter_video.count > 0) {
+                   
+                    if (weakself.model.chapter_video[weakself.playerSection].video_list.count > 0) {
+                        
+                        /* 滚动指定段的指定row  到 指定位置*/
+                        [weakself.videoListVC.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:weakself.playerRow inSection:weakself.playerSection] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                    }
+                }
+            }else{
+                if (weakself.model.chapter_audio.count > 0) {
+                    
+                    /* 滚动指定段的指定row  到 指定位置*/
+                    [weakself.adudioListVC.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:weakself.playerRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                }
+                
+                weakself.app.playerView.model = weakself.model;
+                AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                if (weakself.app.playerView.player.status == PLPlayerStatusPlaying && weakself.app.playerView.playerModel.id == weakself.model.chapter_audio[weakself.playerRow].id) {
+                    del.audioDetailVC.last_click_play  = NO;
+                } else {
+                    del.audioDetailVC.last_click_play  = YES;
+                }
+                del.audioDetailVC.model = weakself.model;
+                del.audioDetailVC.playerRow = weakself.playerRow;
+                
+                [weakself.navigationController pushViewController:del.audioDetailVC animated:YES];
+                
+                
+                
+            }
+        }else{ //未购买
+            
+            if ([self.model.price floatValue] <= 0) {
+                
+                NSMutableDictionary *param = [NSMutableDictionary dictionary];
+                [param setObject:@"ios" forKey:@"source"];
+                [param setObject:weakself.model.cid forKey:@"item_id"];
+                [param setObject:@"course" forKey:@"order_type"];
+                
+                [APPRequest GET:@"/addOrder" parameters:param finished:^(AjaxResult *result) {
+                    
+                    if (result.code == AjaxResultStateSuccess) {
+                        
+                        [KeyWindow showTip:@"报名成功"];
+                        [weakself loadData];
+                    }
+                }];
+            }else{
+                
+                if (self.goodsType == 1 && self.model.chapter_video.count == 0) {
+                    
+                    [KeyWindow showTip:@"暂无视频!"];
+                    return;
+                }else if (self.goodsType == 2 && self.model.chapter_audio.count == 0){
+                    
+                    [KeyWindow showTip:@"暂无音频!"];
+                    return;
+                }
+                AddOrderVC *next = [[AddOrderVC alloc] init];
+                next.goodsId = weakself.model.cid;
+                next.goodsType = @"course";
+                next.BlockBackClick = ^{
+                    
+                    [weakself loadData];
+                };
+                [weakself.navigationController pushViewController:next animated:YES];
+            }
+        }
+    }
+}
+
 #pragma mark - 私有方法
 //placeholder_method_impl//
 //placeholder_method_impl//
@@ -753,97 +874,9 @@ WS(weakself)
                 BuyVipVC *next = [[BuyVipVC alloc] init];
                 [weakself.navigationController pushViewController:next animated:YES];
             }else if (type == 3){ //购买课程
-                if (!Ktoken) {
-                    [weakself loginAction];
-                    return;
-                }
                 
-                if ([self.model.audit integerValue] == 0) { //已下架
-                    
-                    [KeyWindow showTip:@"该课程已下架"];
-                    return ;
-                }else{
-                    //    是否购买,如果是VIP默认购买状态
-                    if ([self.model.checkbuy integerValue] == 1) { //已购买  播
-                      
-                        if (self.goodsType == 1) { //视频
-                            if (self.app.playerView.player.status != PLPlayerStatusPlaying) {
-                                [weakself.headView beginPlayVideo];
-                            } else {
-                                if (self.headView.topImgView.hidden == NO) {
-                                    [weakself.headView beginPlayVideo];
-
-                                }
-                            }
-                            if (weakself.model.chapter_video.count > 0) {
-                               
-                                if (weakself.model.chapter_video[weakself.playerSection].video_list.count > 0) {
-                                    
-                                    /* 滚动指定段的指定row  到 指定位置*/
-                                    [weakself.videoListVC.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:weakself.playerRow inSection:weakself.playerSection] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-                                }
-                            }
-                        }else{
-                            if (weakself.model.chapter_audio.count > 0) {
-                                
-                                /* 滚动指定段的指定row  到 指定位置*/
-                                [weakself.adudioListVC.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:weakself.playerRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-                            }
-                            
-                            weakself.app.playerView.model = weakself.model;
-                            AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                            if (weakself.app.playerView.player.status == PLPlayerStatusPlaying && weakself.app.playerView.playerModel.id == weakself.model.chapter_audio[weakself.playerRow].id) {
-                                del.audioDetailVC.last_click_play  = NO;
-                            } else {
-                                del.audioDetailVC.last_click_play  = YES;
-                            }
-                            del.audioDetailVC.model = weakself.model;
-                            del.audioDetailVC.playerRow = weakself.playerRow;
-                            
-                            [weakself.navigationController pushViewController:del.audioDetailVC animated:YES];
-                            
-                            
-                            
-                        }
-                    }else{ //未购买
-                        
-                        if ([self.model.price floatValue] <= 0) {
-                            
-                            NSMutableDictionary *param = [NSMutableDictionary dictionary];
-                            [param setObject:@"ios" forKey:@"source"];
-                            [param setObject:weakself.model.cid forKey:@"item_id"];
-                            [param setObject:@"course" forKey:@"order_type"];
-                            
-                            [APPRequest GET:@"/addOrder" parameters:param finished:^(AjaxResult *result) {
-                                
-                                if (result.code == AjaxResultStateSuccess) {
-                                    
-                                    [KeyWindow showTip:@"报名成功"];
-                                    [weakself loadData];
-                                }
-                            }];
-                        }else{
-                            
-                            if (self.goodsType == 1 && self.model.chapter_video.count == 0) {
-                                
-                                [KeyWindow showTip:@"暂无视频!"];
-                                return;
-                            }else if (self.goodsType == 2 && self.model.chapter_audio.count == 0){
-                                
-                                [KeyWindow showTip:@"暂无音频!"];
-                                return;
-                            }
-                            AddOrderVC *next = [[AddOrderVC alloc] init];
-                            next.goodsId = weakself.model.cid;
-                            next.goodsType = @"course";
-                            next.BlockBackClick = ^{
-                                
-                                [weakself loadData];
-                            };
-                            [weakself.navigationController pushViewController:next animated:YES];
-                        }
-                    }
-                }
+                [weakself buyThisCourse];
+                
             }else if (type == 4){
                 
                 [weakself showShareViews:weakself.goodsType shareId:weakself.model.cid shareImgUrl:self.model.banner shareTitle:weakself.model.title Success:^(OSMessage *message) {
@@ -860,7 +893,7 @@ WS(weakself)
                 }
                 [weakself goingToTogetcher:weakself.model.group.join_group_id];
             }
-            
+
             else if (type == 5){
                 if (!Ktoken) {
                     [weakself loginAction];
@@ -954,15 +987,7 @@ WS(weakself)
                         }
                     }
                 }
-                
-                
             }
-            
-            
-            
-            
-            
-            
         };
     }
     return _footView;
@@ -978,6 +1003,7 @@ WS(weakself)
         _headView = [[[NSBundle mainBundle] loadNibNamed:@"CourseHeadView" owner:nil options:nil] lastObject];
         _headView.delegate = self;
         _headView.PlayerType = self.goodsType;
+        [_headView.cardButton addTarget:self action:@selector(cardButtonClick) forControlEvents:UIControlEventTouchUpInside];
         _headView.BlockSwitchAdudioClick = ^(CoursePlayerFootModel * _Nonnull playerModel, NSInteger playerRow) {
             
             weakself.adudioListVC.playerRow = playerRow;

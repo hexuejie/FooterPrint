@@ -15,6 +15,7 @@
 #import "PayModel2.h"
 #import <WebKit/WebKit.h>
 #import "TogetcherVC.h"
+#import "WebsVC.h"
 @interface AddOrderVC ()<WKNavigationDelegate>
 
 @property (nonatomic, strong) AddOrderFooterModel *model;
@@ -386,6 +387,16 @@
     }
 }
 
+- (void)discountBgViewClick{
+    UserModel *user = [APPUserDefault getCurrentUserFromLocal];
+    if ([user.vip integerValue] > 0) {
+    }else{
+        WebsVC *w = [[WebsVC alloc] init];
+         w.index = -2;
+         [self.navigationController pushViewController:w animated:YES];
+    }
+}
+
 #pragma mark - 公开方法
 - (void)paySuccessAction {
     if (self.BlockBackClick) {
@@ -482,7 +493,7 @@
     [APPRequest GET:@"/payOrderInfo" parameters:params finished:^(AjaxResult *result) {
        //placeholder_method_call//
         if (result.code == AjaxResultStateSuccess) {
-            
+            NSLog(@"result.data %@",result.data);
             self.model = [AddOrderFooterModel mj_objectWithKeyValues:result.data];
             self.integraModel = self.model.integral_data;
             [self upDataView];
@@ -496,10 +507,35 @@
         
         self.imgView.image = [UIImage imageNamed:@"ic_vip"];
     }else{
-        [self.imgView sd_setImageWithURL:APP_IMG(self.model.orderInfo.banner) placeholderImage: [UIImage imageNamed:@"head_default"]];
+        [self.imgView sd_setImageWithURL:APP_IMG(self.model.orderInfo.banner) placeholderImage: [UIImage imageNamed:@"mydefault"]];//head_default
     }
     
-  
+    if ([self.model.orderInfo.is_discount_vip integerValue] != 1) {
+        self.discountBgView.hidden = YES;
+        self.csDiscountBgViewHeight.constant = 0;
+    }else{
+        self.csDiscountBgViewHeight.constant = 50;
+        self.discountBgView.hidden = NO;
+        
+        self.discountTitleLabel.text = [NSString stringWithFormat:@"会员折扣(%@)",self.model.orderInfo.vip_text];
+        self.disContentLabel.text = [NSString stringWithFormat:@"%@",self.model.orderInfo.vip_price_text];
+        
+        UserModel *user = [APPUserDefault getCurrentUserFromLocal];
+        if ([user.vip integerValue] > 0) {
+            self.disContentLabel.textColor = UIColorFromRGB(0xFF9242);
+            self.disContentLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
+
+        }else{
+            self.disContentLabel.textColor = UIColorFromRGB(0x479297);
+            self.disContentLabel.font = [UIFont systemFontOfSize:14];
+            self.disContentLabel.text = @"您还不是会员，点击升级";
+            
+            UITapGestureRecognizer *taptap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(discountBgViewClick)];
+            self.discountBgView.userInteractionEnabled = YES;
+            [self.discountBgView addGestureRecognizer:taptap];
+        }
+    }
+    
 
     self.lblTitle.text = self.model.orderInfo.title;
     self.lblPrice.text = [self.model.orderInfo.price ChangeMoney];
@@ -543,6 +579,8 @@
 //        self.lblStatus.textColor = [UIColor blackColor];
     }
 }
+
+
 
 #pragma mark - 私有方法
 

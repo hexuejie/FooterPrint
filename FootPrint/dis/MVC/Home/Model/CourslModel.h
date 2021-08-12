@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CourslModel : NSObject
 
+@property (nonatomic, strong) NSString *vip_price_text;
 @property (nonatomic, strong) NSString *banner;
 @property (nonatomic, strong) NSString *pictures; //f
 @property (nonatomic, strong) NSString *desc;

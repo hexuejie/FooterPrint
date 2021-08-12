@@ -36,7 +36,7 @@
         str = URLString;
     }
 #if DEBUG
-    NSLog(@"请求地址：%@",[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:str parameters:dicParam error:nil]);
+    NSLog(@"请求地址：%@",[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:str parameters:dicParam error:nil]);
 #endif
 //    if ([URLString containsString:@"update"]) {
 //        str = @"";

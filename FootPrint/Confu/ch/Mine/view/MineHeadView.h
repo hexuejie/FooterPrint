@@ -44,6 +44,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgAgent;
 //placeholder_property//
+
+
+@property (weak, nonatomic) IBOutlet UILabel *vipTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vipContentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *vipArrowButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,13 +7,15 @@
 //
 
 #import "HomeCourseHorizontalCell.h"
-#import "HomeHeadCell.h"
+#import "HomeHeadSecondCell.h"
 #import "HomeHeadFirstCell.h"
+#import "LearnRecordModel.h"
 
 @interface HomeCourseHorizontalCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong)UICollectionView *collectionView;
 
+@property (nonatomic, strong)UILabel *emptyLabel;
 @end
 
 @implementation HomeCourseHorizontalCell
@@ -40,15 +42,19 @@
 
 
 - (void)setDataSource:(NSArray *)dataSource{
-    
     _dataSource = dataSource;
+    _emptyLabel.hidden = YES;
     
-    NSInteger line = ceil(dataSource.count/2.0);
-    //placeholder_method_call//
-
-    CGFloat width = (SCREEN_WIDTH - 36)/2;
-    CGFloat height = width*9.0/16.0 + 120;
-    self.collectionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (height)*line);
+    if (self.type == 4) {
+        if (_dataSource.count == 0) {
+            _emptyLabel.hidden = NO;
+        }
+        
+        self.collectionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 110);
+    }else{
+        self.collectionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
+    }
+    
     [self.collectionView reloadData];
 }
 //placeholder_method_impl//
@@ -60,20 +66,28 @@
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.itemSize = CGSizeMake(width, height);
     //placeholder_method_call//
-
+    layout.minimumLineSpacing = 0.01;
+    layout.minimumInteritemSpacing = 1;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0) collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90) collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor clearColor];
     
+    self.collectionView.alwaysBounceHorizontal = YES;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.scrollsToTop = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCell" bundle:nil] forCellWithReuseIdentifier:@"HomeHeadCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadSecondCell" bundle:nil] forCellWithReuseIdentifier:@"HomeHeadSecondCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadFirstCell" bundle:nil] forCellWithReuseIdentifier:@"HomeHeadFirstCell"];
     
     [self.contentView addSubview:self.collectionView];
+    
+    _emptyLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH-40, 100)];
+    _emptyLabel.text = @"您还没有记录，请开始学习吧~";
+    _emptyLabel.textColor = UIColorFromRGB(0x999999);
+    [self addSubview:_emptyLabel];
+    _emptyLabel.hidden = YES;
 }
 //placeholder_method_impl//
 
@@ -84,54 +98,62 @@
 }
 //placeholder_method_impl//
 
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    if (self.type == 3) {
-        HomeHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadCell" forIndexPath:indexPath];
+    if (self.type == 3) {
+        
+    HomeHeadFirstCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadFirstCell" forIndexPath:indexPath];
+        cell.sureButton.tag = indexPath.row;
+        [cell.sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.model = self.dataSource[indexPath.row];
+    return cell;
+    }else if (self.type == 4) {
+        
+        HomeHeadSecondCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadSecondCell" forIndexPath:indexPath];
+        LearnRecordModel *model = self.dataSource[indexPath.row];
+        cell.titleLabel.text = model.course_title;
+        [cell.coverImageView sd_setImageWithURL:APP_IMG(model.banner) placeholderImage:[UIImage imageNamed:@"mydefault"]];
         return cell;
-//    }
+    }
     
-//    HomeHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadCell" forIndexPath:indexPath];
-////    cell.contentView.backgroundColor = [UIColor clearColor];
-//    //placeholder_method_call//
-//
-//    if (self.type == 1) { //课程
-//     
-//        _dataSource = [CourslModel mj_objectArrayWithKeyValuesArray:self.dataSource];
-//        cell.courseModel = self.dataSource[indexPath.row];
-//    }else if (self.type == 2){ //直播
-//        
-//        _dataSource = [LiveModel mj_objectArrayWithKeyValuesArray:self.dataSource];
-//        cell.liveModel = self.dataSource[indexPath.row];
-//    }
-//    return cell;
+    return [UICollectionViewCell new];
 }
 
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    return CGSizeMake((SCREEN_WIDTH - 50), 80);
+    if (self.type == 3) {
+        return CGSizeMake((SCREEN_WIDTH - 50), 85);
+    }else{
+        return CGSizeMake(150*WidthRatio2, 110);
+    }
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     //placeholder_method_call//
-
-    return UIEdgeInsetsMake(10, 12, 0, 12);
+    if (self.type == 3) {
+        return UIEdgeInsetsMake(1, 6, 0, 6);
+    }else{
+        return UIEdgeInsetsMake(1, 11, 0, 11);
+    }
 }
-//placeholder_method_impl//
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.type == 1) { //课程
+    if (self.type == 4) { //课程
         //placeholder_method_call//
 
         if (self.BlockCourseClick) {
             self.BlockCourseClick(self.dataSource[indexPath.row]);
         }
-    }else if (self.type == 2){ //直播
+    }else if (self.type == 3){ //直播
         
         if (self.BlockLiveClick) {
             self.BlockLiveClick(self.dataSource[indexPath.row]);
         }
+    }
+}
+- (void)sureButtonClick:(UIButton *)button{
+    if (self.BlockLiveClickYuyue) {
+        self.BlockLiveClickYuyue(self.dataSource[button.tag]);
     }
 }
 

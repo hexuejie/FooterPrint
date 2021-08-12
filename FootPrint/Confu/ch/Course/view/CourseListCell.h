@@ -45,6 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+@property (weak, nonatomic) IBOutlet UIView *vipBgView;
+@property (weak, nonatomic) IBOutlet UILabel *vipTipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vipPriceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vipBgWidth;
+
 
 
 
